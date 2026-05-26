@@ -1,5 +1,6 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
+import { fieldClassName } from "./fieldStyles";
 
 export default function Step6Vision({ data, updateData, errors }: FormStepProps) {
   return (
@@ -16,7 +17,7 @@ export default function Step6Vision({ data, updateData, errors }: FormStepProps)
           value={data.vision}
           onChange={(e) => updateData({ vision: e.target.value })}
           rows={6}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal resize-none"
+          className={`${fieldClassName} resize-none`}
           placeholder="Describe your ideal trip, special occasions, must-see attractions, or any specific requests..."
           required
         />

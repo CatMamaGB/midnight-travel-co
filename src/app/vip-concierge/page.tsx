@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/ServicePageTemplate";
+import { buildPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildPageMetadata(
+  "VIP Concierge Services",
+  "Elevated travel planning with tailored itineraries, premium reservations, and concierge-level support from start to finish.",
+  "/vip-concierge"
+);
 
 export default function VIPConcierge() {
   return (

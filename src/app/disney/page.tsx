@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/ServicePageTemplate";
+import { buildPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildPageMetadata(
+  "Disney Experiences",
+  "Custom Disney vacation planning with itinerary strategy, dining reservations, Lightning Lane guidance, and concierge-level support.",
+  "/disney"
+);
 
 export default function Disney() {
   return (
@@ -9,7 +17,7 @@ export default function Disney() {
       included={[
         {
           title: "Comprehensive Planning",
-          description: "Complete itinerary planning including park tickets, accommodations, dining reservations, and FastPass+ selections. We handle all the details so you can focus on the magic.",
+          description: "Complete itinerary planning including park tickets, accommodations, dining reservations, and Lightning Lane strategy. We handle the details so you can focus on the magic.",
         },
         {
           title: "Expert Guidance",

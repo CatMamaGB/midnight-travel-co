@@ -1,5 +1,6 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
+import { fieldClassName } from "./fieldStyles";
 
 export default function Step1ContactInfo({ data, updateData, errors }: FormStepProps) {
   return (
@@ -13,7 +14,7 @@ export default function Step1ContactInfo({ data, updateData, errors }: FormStepP
           id="firstName"
           value={data.firstName}
           onChange={(e) => updateData({ firstName: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           required
         />
         {errors.firstName && <p className="text-sm text-accent mt-1">{errors.firstName}</p>}
@@ -28,7 +29,7 @@ export default function Step1ContactInfo({ data, updateData, errors }: FormStepP
           id="lastName"
           value={data.lastName}
           onChange={(e) => updateData({ lastName: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           required
         />
         {errors.lastName && <p className="text-sm text-accent mt-1">{errors.lastName}</p>}
@@ -43,7 +44,7 @@ export default function Step1ContactInfo({ data, updateData, errors }: FormStepP
           id="email"
           value={data.email}
           onChange={(e) => updateData({ email: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           required
         />
         {errors.email && <p className="text-sm text-accent mt-1">{errors.email}</p>}
@@ -58,7 +59,7 @@ export default function Step1ContactInfo({ data, updateData, errors }: FormStepP
           id="phone"
           value={data.phone}
           onChange={(e) => updateData({ phone: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           placeholder="(555) 123-4567"
           required
         />

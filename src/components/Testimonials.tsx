@@ -1,20 +1,22 @@
 export default function Testimonials() {
-  // Placeholder testimonials - replace with real data later
   const testimonials = [
     {
-      quote: "The attention to detail and personalized service exceeded our expectations. Every moment was thoughtfully planned.",
+      quote:
+        "Working with Alexa completely changed how we travel. She planned every detail of our family Disney trip, from dining reservations to park strategy, and somehow made it feel stress-free. We saved hours of research and actually got to enjoy the vacation instead of managing it.",
       author: "Sarah M.",
-      location: "Disney Family Vacation",
+      location: "Family Vacation Client",
     },
     {
-      quote: "Working with The Midnight Travel Co. transformed our trip from good to extraordinary. Their expertise made all the difference.",
-      author: "Michael R.",
-      location: "Universal Studios Experience",
+      quote:
+        "I travel often for work and usually handle everything myself, but Alexa planned our corporate retreat better than any agency we have used before. The hotel, transportation, excursions, and scheduling all ran smoothly. It felt polished, organized, and effortless for our team.",
+      author: "Daniel R.",
+      location: "Corporate Travel Client",
     },
     {
-      quote: "The VIP concierge service was exceptional. They anticipated our needs and created experiences we'll never forget.",
-      author: "Jennifer L.",
-      location: "Special Event Planning",
+      quote:
+        "Alexa planned my dream trip to Paris for the Taylor Swift concert, and it honestly felt magical from start to finish. She handled the flights, hotel recommendations, transportation, and even helped us navigate the city around the concert dates. Everything was organized perfectly, and I got to fully enjoy the experience instead of stressing about logistics.",
+      author: "Brianna and Laura",
+      location: "Paris Concert Travel Client",
     },
   ];
 
@@ -25,7 +27,7 @@ export default function Testimonials() {
           <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
             Experiences that speak for themselves
           </p>
         </div>
@@ -46,11 +48,11 @@ export default function Testimonials() {
                 </svg>
               </div>
               <p className="text-charcoal mb-6 leading-relaxed font-light italic">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </p>
               <div className="border-t border-silver/30 pt-4">
                 <p className="text-midnight font-medium">{testimonial.author}</p>
-                <p className="text-charcoal/60 text-sm font-light">{testimonial.location}</p>
+                <p className="text-charcoal/75 text-sm font-light">{testimonial.location}</p>
               </div>
             </div>
           ))}

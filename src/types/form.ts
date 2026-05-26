@@ -28,6 +28,11 @@ export interface FormData {
 
   // Step 7: Consent
   consent: boolean;
+
+  // Basic spam protection fields
+  website?: string;
+  formStartedAt?: number;
+  turnstileToken?: string;
 }
 
 export interface FormStepProps {

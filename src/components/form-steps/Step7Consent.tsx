@@ -1,6 +1,7 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
 import Link from "next/link";
+import { checkboxClassName } from "./fieldStyles";
 
 export default function Step7Consent({ data, updateData, errors }: FormStepProps) {
   return (
@@ -38,7 +39,7 @@ export default function Step7Consent({ data, updateData, errors }: FormStepProps
               type="checkbox"
               checked={data.consent}
               onChange={(e) => updateData({ consent: e.target.checked })}
-              className="mt-1 w-4 h-4 text-royal border-charcoal rounded focus:ring-royal"
+              className={checkboxClassName}
               required
             />
             <span className="text-sm text-charcoal">

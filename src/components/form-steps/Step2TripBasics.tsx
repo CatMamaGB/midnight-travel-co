@@ -1,5 +1,6 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
+import { fieldClassName } from "./fieldStyles";
 
 export default function Step2TripBasics({ data, updateData, errors }: FormStepProps) {
   return (
@@ -13,7 +14,7 @@ export default function Step2TripBasics({ data, updateData, errors }: FormStepPr
           id="destination"
           value={data.destination}
           onChange={(e) => updateData({ destination: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           placeholder="e.g., Walt Disney World, Universal Studios"
           required
         />
@@ -28,7 +29,7 @@ export default function Step2TripBasics({ data, updateData, errors }: FormStepPr
           id="tripType"
           value={data.tripType}
           onChange={(e) => updateData({ tripType: e.target.value })}
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           required
         >
           <option value="">Select trip type</option>
@@ -52,7 +53,7 @@ export default function Step2TripBasics({ data, updateData, errors }: FormStepPr
             id="startDate"
             value={data.startDate}
             onChange={(e) => updateData({ startDate: e.target.value })}
-            className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+            className={fieldClassName}
             required
           />
           {errors.startDate && <p className="text-sm text-accent mt-1">{errors.startDate}</p>}
@@ -68,7 +69,7 @@ export default function Step2TripBasics({ data, updateData, errors }: FormStepPr
             value={data.endDate}
             onChange={(e) => updateData({ endDate: e.target.value })}
             min={data.startDate}
-            className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+            className={fieldClassName}
             required
           />
           {errors.endDate && <p className="text-sm text-accent mt-1">{errors.endDate}</p>}

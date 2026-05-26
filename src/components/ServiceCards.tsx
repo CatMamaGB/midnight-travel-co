@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import { serviceSummaries } from "@/lib/services";
 
 interface ServiceCardProps {
   title: string;
@@ -55,27 +55,6 @@ function ServiceCard({ title, description, href, accentColor }: ServiceCardProps
 }
 
 export default function ServiceCards() {
-  const services = [
-    {
-      title: "Disney Experiences",
-      description: "Magical adventures crafted with attention to every detail. From character dining to VIP tours, we create unforgettable moments.",
-      href: "/disney",
-      accentColor: "bg-gold",
-    },
-    {
-      title: "Universal Studios",
-      description: "Thrilling theme park experiences and exclusive access. Let us handle the planning so you can focus on the adventure.",
-      href: "/universal",
-      accentColor: "bg-gold",
-    },
-    {
-      title: "VIP Concierge",
-      description: "Personalized service that anticipates your needs. Every detail curated, every moment elevated to perfection.",
-      href: "/vip-concierge",
-      accentColor: "bg-gold",
-    },
-  ];
-
   return (
     <section className="py-20 bg-cloud">
       <div className="max-w-7xl mx-auto px-4">
@@ -88,10 +67,18 @@ export default function ServiceCards() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
+          {serviceSummaries.map((service, index) => (
             <ServiceCard key={index} {...service} />
           ))}
+        </div>
+        <div className="mt-10 text-center">
+          <Link
+            href="/services"
+            className="inline-flex rounded-md border border-midnight/15 bg-white px-5 py-3 font-medium text-midnight transition-colors hover:border-midnight hover:bg-midnight hover:text-white"
+          >
+            View All Services
+          </Link>
         </div>
       </div>
     </section>

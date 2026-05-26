@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL, LEGAL_LAST_UPDATED, SITE_NAME } from "@/lib/site";
 
 export default function TermsOfService() {
   return (
@@ -8,14 +9,14 @@ export default function TermsOfService() {
           Terms of Service
         </h1>
         <p className="text-charcoal/70 mb-8 font-light">
-          Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          Last updated: {LEGAL_LAST_UPDATED}
         </p>
 
         <div className="prose prose-lg max-w-none text-charcoal space-y-8">
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Agreement to Terms</h2>
             <p className="leading-relaxed font-light">
-              By accessing or using The Midnight Travel Co. website and services, you agree to be bound 
+              By accessing or using the {SITE_NAME} website and services, you agree to be bound
               by these Terms of Service. If you disagree with any part of these terms, you may not 
               access our services.
             </p>
@@ -24,7 +25,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Services</h2>
             <p className="leading-relaxed font-light">
-              The Midnight Travel Co. provides travel planning and concierge services, including but 
+              {SITE_NAME} provides travel planning and concierge services, including but
               not limited to:
             </p>
             <ul className="list-disc pl-6 space-y-2 font-light mt-4">
@@ -39,7 +40,6 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Third-Party Suppliers</h2>
             <p className="leading-relaxed font-light mb-4">
-              {/* TODO: Verify Mainstreet Travel wording requirements for third-party supplier disclosures */}
               We act as an intermediary between you and third-party suppliers, including but not limited to:
             </p>
             <ul className="list-disc pl-6 space-y-2 font-light">
@@ -107,7 +107,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Limitation of Liability</h2>
             <p className="leading-relaxed font-light">
-              To the maximum extent permitted by law, The Midnight Travel Co., its agents, employees, 
+              To the maximum extent permitted by law, {SITE_NAME}, its agents, employees,
               and representatives shall not be liable for any indirect, incidental, special, consequential, 
               or punitive damages, or any loss of profits or revenues, whether incurred directly or 
               indirectly, or any loss of data, use, goodwill, or other intangible losses resulting from 
@@ -118,7 +118,7 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Indemnification</h2>
             <p className="leading-relaxed font-light">
-              You agree to indemnify and hold harmless The Midnight Travel Co. and its officers, directors, 
+              You agree to indemnify and hold harmless {SITE_NAME} and its officers, directors,
               employees, and agents from any claims, damages, losses, liabilities, and expenses (including 
               legal fees) arising out of or relating to your use of our services or violation of these Terms.
             </p>
@@ -128,7 +128,7 @@ export default function TermsOfService() {
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Modifications to Terms</h2>
             <p className="leading-relaxed font-light">
               We reserve the right to modify these Terms of Service at any time. We will notify you of 
-              any material changes by posting the updated terms on this page and updating the "Last updated" 
+              any material changes by posting the updated terms on this page and updating the &quot;Last updated&quot;
               date. Your continued use of our services after such modifications constitutes acceptance 
               of the updated terms.
             </p>
@@ -137,9 +137,8 @@ export default function TermsOfService() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Governing Law</h2>
             <p className="leading-relaxed font-light">
-              {/* TODO: Verify Mainstreet Travel requirements for governing law */}
-              These Terms of Service shall be governed by and construed in accordance with the laws 
-              of the jurisdiction in which Mainstreet Travel operates, without regard to its conflict 
+              These Terms of Service shall be governed by and construed in accordance with the laws
+              of the jurisdiction of our principal place of business, without regard to its conflict
               of law provisions.
             </p>
           </section>
@@ -150,8 +149,8 @@ export default function TermsOfService() {
               If you have questions about these Terms of Service, please contact us at:
             </p>
             <p className="leading-relaxed font-light mt-4">
-              <strong>The Midnight Travel Co.</strong><br />
-              Email: travel.midnightco@gmail.com
+              <strong>{SITE_NAME}</strong><br />
+              Email: {CONTACT_EMAIL}
             </p>
           </section>
         </div>

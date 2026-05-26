@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Turnstile from "react-turnstile";
 import { FormData } from "@/types/form";
 import ProgressIndicator from "./ProgressIndicator";
-import FormStep from "./FormStep";
 import Step1ContactInfo from "./form-steps/Step1ContactInfo";
 import Step2TripBasics from "./form-steps/Step2TripBasics";
 import Step3Travelers from "./form-steps/Step3Travelers";
@@ -14,6 +14,7 @@ import Step6Vision from "./form-steps/Step6Vision";
 import Step7Consent from "./form-steps/Step7Consent";
 
 const TOTAL_STEPS = 7;
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function MultiStepForm() {
   const router = useRouter();
@@ -35,6 +36,8 @@ export default function MultiStepForm() {
     interests: [],
     vision: "",
     consent: false,
+    website: "",
+    formStartedAt: Date.now(),
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -101,6 +104,9 @@ export default function MultiStepForm() {
         if (!formData.consent) {
           newErrors.consent = "You must agree to the terms to continue";
         }
+        if (turnstileSiteKey && !formData.turnstileToken) {
+          newErrors.turnstileToken = "Please complete the spam protection check.";
+        }
         break;
     }
 
@@ -130,15 +136,33 @@ export default function MultiStepForm() {
         },
         body: JSON.stringify(formData),
       });
+      const payload = (await response.json()) as {
+        error?: string;
+        warnings?: string[];
+        storage?: { leadId?: string | null };
+      };
 
       if (!response.ok) {
-        throw new Error("Failed to submit form");
+        throw new Error(payload.error || "Failed to submit form");
       }
 
-      router.push("/thank-you");
+      const params = new URLSearchParams();
+      if (payload.storage?.leadId) {
+        params.set("leadId", payload.storage.leadId);
+      }
+      if (payload.warnings?.length) {
+        params.set("status", "partial");
+      }
+
+      router.push(`/thank-you${params.toString() ? `?${params.toString()}` : ""}`);
     } catch (error) {
       console.error("Error submitting form:", error);
-      setErrors({ submit: "Failed to submit form. Please try again." });
+      setErrors({
+        submit:
+          error instanceof Error
+            ? error.message
+            : "Failed to submit form. Please try again.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -170,8 +194,38 @@ export default function MultiStepForm() {
       <div className="max-w-4xl mx-auto">
         <ProgressIndicator currentStep={currentStep} totalSteps={TOTAL_STEPS} />
 
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="rounded-lg bg-white p-8 text-charcoal shadow-md">
+          <div className="hidden" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website ?? ""}
+              onChange={(e) => updateData({ website: e.target.value })}
+            />
+          </div>
+
           {renderStep()}
+
+          {currentStep === 7 && turnstileSiteKey && (
+            <div className="mt-6 rounded-lg border border-silver/40 bg-cloud/60 p-4">
+              <p className="mb-3 text-sm text-charcoal/80">
+                Complete the spam protection check before submitting your inquiry.
+              </p>
+              <Turnstile
+                sitekey={turnstileSiteKey}
+                onVerify={(token) => updateData({ turnstileToken: token })}
+                onExpire={() => updateData({ turnstileToken: "" })}
+                onError={() => updateData({ turnstileToken: "" })}
+              />
+              {errors.turnstileToken && (
+                <p className="mt-2 text-sm text-accent">{errors.turnstileToken}</p>
+              )}
+            </div>
+          )}
 
           <div className="flex justify-between mt-8 pt-6 border-t border-silver">
             {currentStep > 1 ? (

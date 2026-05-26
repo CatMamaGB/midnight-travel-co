@@ -1,9 +1,9 @@
 export default function TrustBadges() {
   const badges = [
-    { label: "Licensed Travel Advisor", icon: "✓" },
-    { label: "Disney Authorized", icon: "✓" },
-    { label: "Universal Certified", icon: "✓" },
-    { label: "VIP Concierge Services", icon: "✓" },
+    { label: "Custom Disney Planning", icon: "✓" },
+    { label: "Universal Vacation Planning", icon: "✓" },
+    { label: "Corporate & Group Travel", icon: "✓" },
+    { label: "Concierge-Level Support", icon: "✓" },
   ];
 
   return (

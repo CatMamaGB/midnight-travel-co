@@ -1,5 +1,6 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
+import { fieldClassName } from "./fieldStyles";
 
 export default function Step4Budget({ data, updateData, errors }: FormStepProps) {
   return (
@@ -19,7 +20,7 @@ export default function Step4Budget({ data, updateData, errors }: FormStepProps)
             onChange={(e) => updateData({ budgetMin: parseInt(e.target.value) || 1000 })}
             min="1000"
             step="100"
-            className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+            className={fieldClassName}
             required
           />
           {errors.budgetMin && <p className="text-sm text-accent mt-1">{errors.budgetMin}</p>}
@@ -36,7 +37,7 @@ export default function Step4Budget({ data, updateData, errors }: FormStepProps)
             onChange={(e) => updateData({ budgetMax: parseInt(e.target.value) || 5000 })}
             min={data.budgetMin}
             step="100"
-            className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+            className={fieldClassName}
             required
           />
           {errors.budgetMax && <p className="text-sm text-accent mt-1">{errors.budgetMax}</p>}

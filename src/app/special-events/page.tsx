@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/ServicePageTemplate";
+import { buildPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildPageMetadata(
+  "Special Events",
+  "Plan milestone celebrations, group trips, and special occasion travel with polished coordination and elevated guest experiences.",
+  "/special-events"
+);
 
 export default function SpecialEvents() {
   return (

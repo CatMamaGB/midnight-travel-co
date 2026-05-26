@@ -3,6 +3,7 @@ import { Poppins, Open_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -17,22 +18,23 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "The Midnight Travel Co. | Premium Travel Planning & VIP Concierge Services",
-    template: "%s | The Midnight Travel Co.",
+    default: `${SITE_NAME} | Premium Travel Planning & VIP Concierge Services`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "Experience luxury travel planning with The Midnight Travel Co. Specializing in Disney, Universal, VIP concierge services, and special events. Your dream vacation starts here.",
+  description: SITE_DESCRIPTION,
   openGraph: {
-    title: "The Midnight Travel Co. | Premium Travel Planning & VIP Concierge Services",
-    description: "Experience luxury travel planning with The Midnight Travel Co. Specializing in Disney, Universal, VIP concierge services, and special events.",
-    url: "https://www.themidnighttravelco.com",
-    siteName: "The Midnight Travel Co.",
+    title: `${SITE_NAME} | Premium Travel Planning & VIP Concierge Services`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     images: [
       {
-        url: "/og-image.jpg", // Placeholder - update with actual image path
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "The Midnight Travel Co.",
+        alt: SITE_NAME,
       },
     ],
     locale: "en_US",
@@ -40,9 +42,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Midnight Travel Co. | Premium Travel Planning & VIP Concierge Services",
-    description: "Experience luxury travel planning with The Midnight Travel Co. Specializing in Disney, Universal, VIP concierge services, and special events.",
-    images: ["/og-image.jpg"], // Placeholder - update with actual image path
+    title: `${SITE_NAME} | Premium Travel Planning & VIP Concierge Services`,
+    description: SITE_DESCRIPTION,
+    images: ["/twitter-image"],
   },
 };
 
@@ -52,9 +54,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <body
-        className={`${poppins.variable} ${openSans.variable} antialiased`}
+        className={`${poppins.variable} ${openSans.variable} bg-white text-charcoal antialiased`}
       >
         <Header />
         {children}

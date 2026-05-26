@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import ServicePageTemplate from "@/components/ServicePageTemplate";
+import { buildPageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = buildPageMetadata(
+  "Universal Studios",
+  "Plan a smarter Universal Orlando trip with expert itinerary guidance, Express Pass strategy, hotel planning, and VIP-level support.",
+  "/universal"
+);
 
 export default function Universal() {
   return (

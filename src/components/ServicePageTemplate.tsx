@@ -54,9 +54,9 @@ export default function ServicePageTemplate({
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
-              What's Included
+              What&apos;s Included
             </h2>
-            <p className="text-xl text-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
               Comprehensive planning and support throughout your journey
             </p>
           </div>
@@ -82,7 +82,7 @@ export default function ServicePageTemplate({
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
-              Who It's For
+              Who It&apos;s For
             </h2>
           </div>
 

@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Midnight Travel Co.
 
-## Getting Started
+Marketing and lead-capture site for The Midnight Travel Co., built with Next.js, React, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Tech Stack
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Tailwind CSS
+- Nodemailer with Gmail SMTP
+- Google Sheets API or Google Apps Script for inquiry storage
+- Upstash Redis (optional durable rate limiting)
+- Cloudflare Turnstile (optional bot protection)
+
+## Local Development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Copy the example environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Add your Gmail and Google storage credentials to `.env.local`.
+
+4. Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Site Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project uses the Next.js App Router under `src/app`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Key routes include:
 
-## Learn More
+- `/` homepage (hero, trust badges, service highlights, benefits, signature experiences, testimonials placeholder, FAQ preview, CTA)
+- `/contact` multi-step travel inquiry form with a visible "What happens next" section
+- `/disney`, `/universal`, `/vip-concierge`, `/special-events` built from a shared service-page template pattern
+- `/thank-you` confirmation page with clear next steps
+- `/privacy-policy`, `/terms-of-service`, `/cookie-policy`, `/disclosures`, `/accessibility`
+- `/blog` and dynamic blog entries from `src/content/blog/`
 
-To learn more about Next.js, take a look at the following resources:
+## Contact Form Flow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Website inquiries are submitted to `src/app/api/contact/route.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The route:
 
-## Deploy on Vercel
+- validates the form payload
+- verifies optional Turnstile anti-bot checks
+- applies rate limiting with Upstash Redis when configured
+- sends an internal notification email
+- sends a traveler confirmation email
+- stores the inquiry using one of these Google-backed options:
+  - direct Google Sheets API
+  - Google Apps Script webhook fallback
+- can send optional operational alerts through `ALERT_WEBHOOK_URL`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Form steps:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Contact info
+2. Trip basics
+3. Travelers (including child ages)
+4. Budget range (minimum guardrails)
+5. Interests
+6. Vision text
+7. Consent and submit
+
+## Environment Variables
+
+See `.env.example` for the full list.
+
+Core variables:
+
+- `NEXT_PUBLIC_SITE_URL`
+- `GMAIL_USER`
+- `GMAIL_APP_PASSWORD`
+- `CONTACT_STORAGE_PROVIDER`
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+- `TURNSTILE_SECRET_KEY`
+- `ALERT_WEBHOOK_URL`
+
+For direct Sheets API:
+
+- `GOOGLE_SHEETS_SPREADSHEET_ID`
+- `GOOGLE_SHEETS_SHEET_NAME`
+- `GOOGLE_CLIENT_EMAIL`
+- `GOOGLE_PRIVATE_KEY`
+- `UPSTASH_REDIS_REST_URL`
+- `UPSTASH_REDIS_REST_TOKEN`
+
+For Apps Script fallback:
+
+- `GOOGLE_APPS_SCRIPT_URL`
+- `GOOGLE_APPS_SCRIPT_SECRET`
+
+## Email + Storage Setup
+
+Detailed setup instructions live in `EMAIL_SETUP.md`.
+
+## Blog Authoring
+
+Blog posts now use a one-file-per-post structure under `src/content/blog/`.
+
+See `docs/blog-authoring.md` for the authoring workflow.
+
+## Testing
+
+Run the quality checks locally with:
+
+```bash
+npm run lint
+npm run test
+npm run build
+```
+
+## Notes
+
+- Legal/compliance copy is drafted and includes TODO markers where host-agency (Mainstreet Travel) wording may need exact language.
+- Before production launch, validate all environment variables and run:
+  - `npm run lint`
+  - `npm run test`
+  - `npm run build`

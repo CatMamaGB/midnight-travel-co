@@ -33,7 +33,7 @@ export default function Benefits() {
           <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
             Why Work With a Travel Advisor
           </h2>
-          <p className="text-xl text-charcoal/70 max-w-2xl mx-auto font-light leading-relaxed">
+          <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
             Thoughtful planning, expert guidance, and dedicated support throughout your journey
           </p>
         </div>

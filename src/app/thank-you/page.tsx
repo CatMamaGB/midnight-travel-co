@@ -1,6 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE_NAME } from "@/lib/site";
 
-export default function ThankYou() {
+export const metadata: Metadata = {
+  title: "Thank You",
+  description: "Your travel inquiry has been received by The Midnight Travel Co.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+interface ThankYouPageProps {
+  searchParams?: Promise<{
+    leadId?: string;
+    status?: string;
+  }>;
+}
+
+export default async function ThankYou({ searchParams }: ThankYouPageProps) {
+  const params = await searchParams;
+  const hasPartialWarning = params?.status === "partial";
+
   return (
     <main className="min-h-screen bg-cloud py-12 px-4">
       <div className="max-w-4xl mx-auto">
@@ -30,9 +51,14 @@ export default function ThankYou() {
                 Your travel inquiry has been successfully submitted.
               </p>
               <p className="text-lg text-charcoal">
-                We're delighted to confirm that we have received your request and 
-                our team is already reviewing it.
+                We&apos;re delighted to confirm that we have received your request and our team is
+                already reviewing it.
               </p>
+              {params?.leadId && (
+                <p className="mt-3 text-sm uppercase tracking-[0.18em] text-charcoal/60">
+                  Reference ID: {params.leadId}
+                </p>
+              )}
             </div>
           </div>
 
@@ -42,10 +68,21 @@ export default function ThankYou() {
               ✓ Confirmation Received
             </p>
             <p className="text-charcoal">
-              Your inquiry is now in our system and has been assigned to one of our 
-              dedicated travel concierges. You will receive a confirmation email shortly 
-              with all the details of your submission.
+              Your inquiry is now in our system and has been assigned to one of our dedicated
+              travel concierges.
             </p>
+            {hasPartialWarning ? (
+              <p className="mt-3 text-charcoal">
+                We received your inquiry, but one part of the delivery process needed a manual
+                fallback. If you do not hear from us within 48 hours, email us directly so we can
+                prioritize your request.
+              </p>
+            ) : (
+              <p className="mt-3 text-charcoal">
+                You should receive a confirmation email shortly with all the details of your
+                submission.
+              </p>
+            )}
           </div>
         </div>
 
@@ -105,13 +142,13 @@ export default function ThankYou() {
                   24-48 Hour Response
                 </h3>
                 <p className="text-charcoal mb-2">
-                  You can expect to hear from one of our travel concierges within 
+                  You can expect to hear from one of our travel concierges within
                   <strong className="text-midnight"> 24-48 hours</strong>. They will 
-                  reach out with detailed recommendations and next steps to bring your 
+                  reach out with detailed recommendations and next steps to bring your
                   travel dreams to life.
                 </p>
                 <p className="text-sm text-charcoal italic">
-                  We understand that every journey is unique, and we're committed to 
+                  We understand that every journey is unique, and we&apos;re committed to
                   crafting an experience that exceeds your expectations.
                 </p>
               </div>
@@ -134,7 +171,7 @@ export default function ThankYou() {
                 href="/blog"
                 className="px-6 py-2 bg-cloud text-midnight rounded-md hover:bg-silver transition-colors"
               >
-                Read Our Blog
+                Read the {SITE_NAME} Blog
               </Link>
               <Link
                 href="/about"

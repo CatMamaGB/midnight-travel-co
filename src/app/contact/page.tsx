@@ -1,4 +1,13 @@
+import type { Metadata } from "next";
 import MultiStepForm from "@/components/MultiStepForm";
+import { buildPageMetadata } from "@/lib/metadata";
+import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
+
+export const metadata: Metadata = buildPageMetadata(
+  "Contact",
+  "Start planning your Disney, Universal, VIP concierge, special event, or group travel experience with The Midnight Travel Co.",
+  "/contact"
+);
 
 export default function Contact() {
   return (
@@ -7,17 +16,17 @@ export default function Contact() {
       <div className="bg-white border-b border-silver">
         <div className="max-w-4xl mx-auto px-4 py-12">
           <h1 className="text-4xl font-semibold text-midnight mb-4">
-            Let's Plan Your Dream Journey
+            Let&apos;s Plan Your Dream Journey
           </h1>
           <p className="text-lg text-charcoal leading-relaxed mb-6">
-            At The Midnight Travel Co., we believe every journey should be extraordinary. 
-            Our dedicated concierge team specializes in crafting personalized travel experiences 
+            At {SITE_NAME}, we believe every journey should be extraordinary.
+            Our dedicated concierge team specializes in crafting personalized travel experiences
             that transform your vision into reality.
           </p>
           <p className="text-base text-charcoal leading-relaxed">
-            Whether you're planning a magical Disney adventure, exploring Universal Studios, 
-            seeking VIP concierge services, or organizing a special event, we're here to 
-            handle every detail with precision and care. Simply share your preferences below, 
+            Whether you&apos;re planning a magical Disney adventure, exploring Universal Studios,
+            seeking VIP concierge services, or organizing a special event, we&apos;re here to
+            handle every detail with precision and care. Simply share your preferences below,
             and let us begin curating your perfect escape.
           </p>
         </div>
@@ -63,7 +72,7 @@ export default function Contact() {
               </div>
               <h3 className="text-xl font-medium text-midnight mb-2">24-48 Hour Response</h3>
               <p className="text-charcoal">
-                You'll receive a detailed response from one of our travel concierges within 
+                You&apos;ll receive a detailed response from one of our travel concierges within
                 24-48 hours, ready to bring your travel dreams to life.
               </p>
             </div>
@@ -75,7 +84,14 @@ export default function Contact() {
               <a href="/faq" className="text-royal hover:underline font-medium">
                 Frequently Asked Questions
               </a>{" "}
-              page or reach out directly. We're here to help every step of the way.
+              page or reach out directly at{" "}
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-royal hover:underline font-medium"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              . We&apos;re here to help every step of the way.
             </p>
           </div>
         </div>

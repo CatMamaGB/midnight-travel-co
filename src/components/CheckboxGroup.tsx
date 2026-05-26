@@ -1,3 +1,5 @@
+import { checkboxClassName } from "./form-steps/fieldStyles";
+
 interface CheckboxGroupProps {
   label: string;
   options: { value: string; label: string }[];
@@ -35,7 +37,7 @@ export default function CheckboxGroup({
               value={option.value}
               checked={selectedValues.includes(option.value)}
               onChange={(e) => handleChange(option.value, e.target.checked)}
-              className="w-4 h-4 text-royal border-charcoal rounded focus:ring-royal"
+              className={checkboxClassName}
             />
             <span className="text-sm text-charcoal">{option.label}</span>
           </label>

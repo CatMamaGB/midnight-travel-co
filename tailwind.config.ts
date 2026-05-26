@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         midnight: "#0B132B",
-        gold: "#FFD166",
+        gold: "#EFBEB7",
         royal: "#26547C",
         accent: "#EF476F",
         charcoal: "#1F1F1F",

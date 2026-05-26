@@ -1,5 +1,6 @@
 import { FormStepProps } from "@/types/form";
 import FormStep from "../FormStep";
+import { fieldClassName } from "./fieldStyles";
 
 export default function Step3Travelers({ data, updateData, errors }: FormStepProps) {
   const handleAdultsChange = (value: number) => {
@@ -34,7 +35,7 @@ export default function Step3Travelers({ data, updateData, errors }: FormStepPro
           value={data.adults}
           onChange={(e) => handleAdultsChange(parseInt(e.target.value) || 1)}
           min="1"
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
           required
         />
         {errors.adults && <p className="text-sm text-accent mt-1">{errors.adults}</p>}
@@ -50,7 +51,7 @@ export default function Step3Travelers({ data, updateData, errors }: FormStepPro
           value={data.children}
           onChange={(e) => handleChildrenChange(parseInt(e.target.value) || 0)}
           min="0"
-          className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+          className={fieldClassName}
         />
         {errors.children && <p className="text-sm text-accent mt-1">{errors.children}</p>}
       </div>
@@ -74,7 +75,7 @@ export default function Step3Travelers({ data, updateData, errors }: FormStepPro
                   }
                   min="0"
                   max="17"
-                  className="w-full px-4 py-2 border border-silver rounded-md focus:ring-royal focus:border-royal"
+                  className={fieldClassName}
                   placeholder="Enter age"
                   required
                 />

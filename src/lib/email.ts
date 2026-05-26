@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
 import { FormData } from "@/types/form";
+import { escapeHtml, formatHtmlMultiline } from "@/lib/escape";
+import { CONTACT_EMAIL, SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Create transporter using Gmail SMTP
 const createTransporter = () => {
@@ -12,14 +14,25 @@ const createTransporter = () => {
   });
 };
 
-// Email to travel.midnightco@gmail.com (notification)
+// Email to the primary team inbox (notification)
 export async function sendNotificationEmail(formData: FormData) {
   const transporter = createTransporter();
+  const safeFirstName = escapeHtml(formData.firstName);
+  const safeLastName = escapeHtml(formData.lastName);
+  const safeEmail = escapeHtml(formData.email);
+  const safePhone = escapeHtml(formData.phone);
+  const safeDestination = escapeHtml(formData.destination);
+  const safeTripType = escapeHtml(formData.tripType);
+  const safeStartDate = escapeHtml(formData.startDate);
+  const safeEndDate = escapeHtml(formData.endDate);
+  const safeInterests = formData.interests.map((interest) => escapeHtml(interest)).join(", ");
+  const safeVision = formatHtmlMultiline(formData.vision);
+  const safeChildAges = formData.childAges.map((age) => escapeHtml(String(age))).join(", ");
 
   const mailOptions = {
     from: process.env.GMAIL_USER,
-    to: "travel.midnightco@gmail.com",
-    subject: `New Travel Inquiry from ${formData.firstName} ${formData.lastName}`,
+    to: CONTACT_EMAIL,
+    subject: `New Travel Inquiry from ${formData.firstName.trim()} ${formData.lastName.trim()}`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -37,29 +50,29 @@ export async function sendNotificationEmail(formData: FormData) {
         <body>
           <div class="container">
             <div class="header">
-              <h1>The Midnight Travel Co.</h1>
+              <h1>${SITE_NAME}</h1>
               <h2>New Travel Inquiry</h2>
             </div>
             <div class="content">
               <div class="section">
                 <h3>Contact Information</h3>
-                <p><span class="label">Name:</span> ${formData.firstName} ${formData.lastName}</p>
-                <p><span class="label">Email:</span> ${formData.email}</p>
-                <p><span class="label">Phone:</span> ${formData.phone}</p>
+                <p><span class="label">Name:</span> ${safeFirstName} ${safeLastName}</p>
+                <p><span class="label">Email:</span> ${safeEmail}</p>
+                <p><span class="label">Phone:</span> ${safePhone}</p>
               </div>
 
               <div class="section">
                 <h3>Trip Details</h3>
-                <p><span class="label">Destination:</span> ${formData.destination}</p>
-                <p><span class="label">Trip Type:</span> ${formData.tripType}</p>
-                <p><span class="label">Travel Dates:</span> ${formData.startDate} to ${formData.endDate}</p>
+                <p><span class="label">Destination:</span> ${safeDestination}</p>
+                <p><span class="label">Trip Type:</span> ${safeTripType}</p>
+                <p><span class="label">Travel Dates:</span> ${safeStartDate} to ${safeEndDate}</p>
               </div>
 
               <div class="section">
                 <h3>Travelers</h3>
                 <p><span class="label">Adults:</span> ${formData.adults}</p>
                 ${formData.children > 0 ? `<p><span class="label">Children:</span> ${formData.children}</p>` : ""}
-                ${formData.childAges.length > 0 ? `<p><span class="label">Child Ages:</span> ${formData.childAges.join(", ")}</p>` : ""}
+                ${formData.childAges.length > 0 ? `<p><span class="label">Child Ages:</span> ${safeChildAges}</p>` : ""}
               </div>
 
               <div class="section">
@@ -69,12 +82,12 @@ export async function sendNotificationEmail(formData: FormData) {
 
               <div class="section">
                 <h3>Interests</h3>
-                <p>${formData.interests.join(", ") || "None selected"}</p>
+                <p>${safeInterests || "None selected"}</p>
               </div>
 
               <div class="section">
                 <h3>Vision</h3>
-                <p>${formData.vision.replace(/\n/g, "<br>")}</p>
+                <p>${safeVision}</p>
               </div>
             </div>
             <div class="footer">
@@ -98,11 +111,12 @@ export async function sendNotificationEmail(formData: FormData) {
 // Confirmation email to user
 export async function sendConfirmationEmail(formData: FormData) {
   const transporter = createTransporter();
+  const safeFirstName = escapeHtml(formData.firstName);
 
   const mailOptions = {
     from: process.env.GMAIL_USER,
     to: formData.email,
-    subject: "Your Travel Inquiry Has Been Received - The Midnight Travel Co.",
+    subject: `Your Travel Inquiry Has Been Received - ${SITE_NAME}`,
     html: `
       <!DOCTYPE html>
       <html>
@@ -205,11 +219,11 @@ export async function sendConfirmationEmail(formData: FormData) {
         <body>
           <div class="container">
             <div class="header">
-              <h1>The Midnight Travel Co.</h1>
+              <h1>${SITE_NAME}</h1>
             </div>
             <div class="content">
               <div class="greeting">
-                Dear ${formData.firstName},
+                Dear ${safeFirstName},
               </div>
               
               <div class="message">
@@ -230,11 +244,11 @@ export async function sendConfirmationEmail(formData: FormData) {
               </div>
 
               <div class="message">
-                In the meantime, should you have any questions or wish to explore more about our services, we invite you to visit our Frequently Asked Questions page, where you'll find helpful information about our process, policies, and what makes The Midnight Travel Co. your ideal travel partner.
+                In the meantime, should you have any questions or wish to explore more about our services, we invite you to visit our Frequently Asked Questions page, where you'll find helpful information about our process, policies, and what makes ${SITE_NAME} your ideal travel partner.
               </div>
 
               <div style="text-align: center;">
-                <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themidnighttravelco.com'}/faq" class="faq-link">
+                <a href="${SITE_URL}/faq" class="faq-link">
                   Visit Our FAQ
                 </a>
               </div>
@@ -243,15 +257,15 @@ export async function sendConfirmationEmail(formData: FormData) {
                 <p>We look forward to bringing your travel dreams to life.</p>
                 <p>Warm regards,</p>
                 <p style="margin-top: 15px;">
-                  <strong>The Midnight Travel Co. Concierge Team</strong>
+                  <strong>${SITE_NAME} Concierge Team</strong>
                 </p>
               </div>
             </div>
             <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} The Midnight Travel Co. All rights reserved.</p>
+              <p>&copy; ${new Date().getFullYear()} ${SITE_NAME}. All rights reserved.</p>
               <p style="margin-top: 10px;">
-                <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themidnighttravelco.com'}">Visit Our Website</a> | 
-                <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'https://www.themidnighttravelco.com'}/contact">Contact Us</a>
+                <a href="${SITE_URL}">Visit Our Website</a> |
+                <a href="${SITE_URL}/contact">Contact Us</a>
               </p>
             </div>
           </div>

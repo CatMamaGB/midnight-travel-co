@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL, LEGAL_LAST_UPDATED, SITE_NAME } from "@/lib/site";
 
 export default function Accessibility() {
   return (
@@ -8,14 +9,14 @@ export default function Accessibility() {
           Accessibility Statement
         </h1>
         <p className="text-charcoal/70 mb-8 font-light">
-          Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          Last updated: {LEGAL_LAST_UPDATED}
         </p>
 
         <div className="prose prose-lg max-w-none text-charcoal space-y-8">
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Our Commitment</h2>
             <p className="leading-relaxed font-light">
-              The Midnight Travel Co. is committed to ensuring digital accessibility for people with 
+              {SITE_NAME} is committed to ensuring digital accessibility for people with
               disabilities. We are continually improving the user experience for everyone and applying 
               the relevant accessibility standards to achieve these goals.
             </p>
@@ -75,14 +76,14 @@ export default function Accessibility() {
           <section>
             <h2 className="text-2xl font-light text-midnight mb-4 mt-8">Feedback</h2>
             <p className="leading-relaxed font-light">
-              We welcome your feedback on the accessibility of The Midnight Travel Co. website. 
+              We welcome your feedback on the accessibility of the {SITE_NAME} website.
               If you encounter accessibility barriers or have suggestions for improvement, please 
               contact us:
             </p>
             <p className="leading-relaxed font-light mt-4">
-              <strong>The Midnight Travel Co.</strong><br />
-              Email: travel.midnightco@gmail.com<br />
-              Please include "Accessibility" in the subject line.
+              <strong>{SITE_NAME}</strong><br />
+              Email: {CONTACT_EMAIL}<br />
+              Please include &quot;Accessibility&quot; in the subject line.
             </p>
             <p className="leading-relaxed font-light mt-4">
               We aim to respond to accessibility feedback within 5 business days.
