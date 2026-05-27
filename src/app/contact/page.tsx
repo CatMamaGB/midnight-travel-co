@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import MultiStepForm from "@/components/MultiStepForm";
 import { buildPageMetadata } from "@/lib/metadata";
 import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
@@ -53,7 +54,15 @@ export default function Contact() {
 
       {/* Form Section */}
       <div id="plan-my-vacation-form" className="py-8">
-        <MultiStepForm />
+        <Suspense
+          fallback={
+            <div className="mx-auto max-w-4xl rounded-lg bg-white px-6 py-10 text-center text-charcoal shadow-md">
+              Loading planning form...
+            </div>
+          }
+        >
+          <MultiStepForm />
+        </Suspense>
       </div>
 
       {/* What Happens Next Section */}
