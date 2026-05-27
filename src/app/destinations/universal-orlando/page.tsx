@@ -3,16 +3,17 @@ import ServicePageTemplate from "@/components/ServicePageTemplate";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Universal Orlando Vacations",
-  "Plan Universal Orlando with Express Pass strategy, resort comparisons, and itinerary support for families and thrill seekers.",
-  "/destinations/universal-orlando"
+  "Universal Orlando Travel Agent | Express Pass Strategy + Itinerary Planning",
+  "Plan Universal Orlando with expert support for resort choices, Express Pass value, and ride-focused park-day strategy.",
+  "/destinations/universal-orlando",
+  ["universal orlando travel agent", "universal vacation planner", "express pass strategy"]
 );
 
 export default function UniversalOrlandoPage() {
   return (
     <ServicePageTemplate
-      title="Universal Orlando"
-      subtitle="Destination Guide"
+      title="Universal Orlando Travel Agent"
+      subtitle="Express Pass + Itinerary Planning"
       heroDescription="A Universal Orlando plan built around thrill priorities, wait-time strategy, and resort advantages so your park days move faster and feel easier."
       included={[
         {

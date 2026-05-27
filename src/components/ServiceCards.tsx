@@ -60,10 +60,10 @@ export default function ServiceCards() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
-            Our Services
+            What We Plan For You
           </h2>
           <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
-            Specialized travel experiences designed around your unique vision
+            Disney, Universal, cruise add-ons, and destination strategy through one guided planning process.
           </p>
         </div>
         

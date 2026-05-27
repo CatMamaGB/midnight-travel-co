@@ -5,9 +5,10 @@ import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Disney and Universal Dining Guide",
-  "Plan dining reservations and meal pacing with practical guidance for Disney and Universal vacations.",
-  "/planning-tools/dining-guide"
+  "Disney Dining Reservation Guide: Timelines, Priorities, and Strategy",
+  "Learn when to book Disney dining reservations, which meals to prioritize, and how to align dining with park flow.",
+  "/planning-tools/dining-guide",
+  ["disney dining reservations", "when to book disney dining", "disney dining strategy"]
 );
 
 export default function DiningGuidePage() {
@@ -21,7 +22,7 @@ export default function DiningGuidePage() {
             Planning Tool
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-midnight md:text-5xl">
-            Dining Strategy Guide
+            Disney Dining Reservation Guide
           </h1>
           <p className="mx-auto max-w-3xl text-lg leading-8 text-charcoal/80">
             Use this framework to build reservations around your vacation rhythm instead of letting

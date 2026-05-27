@@ -5,9 +5,10 @@ import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Lightning Lane Planning Guide",
-  "Lightning Lane strategy guidance for Disney vacations including value checks and itinerary integration.",
-  "/planning-tools/lightning-lane-guide"
+  "Disney Genie+ and Lightning Lane Strategy Guide",
+  "Find out when Genie+ and Lightning Lane are worth it, how to prioritize rides, and how to avoid overpaying.",
+  "/planning-tools/lightning-lane-guide",
+  ["genie+ strategy", "lightning lane guide", "is genie plus worth it"]
 );
 
 export default function LightningLaneGuidePage() {
@@ -21,7 +22,7 @@ export default function LightningLaneGuidePage() {
             Planning Tool
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-midnight md:text-5xl">
-            Lightning Lane Guide
+            Disney Genie+ and Lightning Lane Strategy Guide
           </h1>
           <p className="mx-auto max-w-3xl text-lg leading-8 text-charcoal/80">
             Understand when Lightning Lane improves your trip and when other strategy choices deliver

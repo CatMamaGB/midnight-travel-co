@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export default function TrustBadges() {
   const badges = [
-    { label: "Custom Disney Planning", icon: "✓" },
-    { label: "Universal Vacation Planning", icon: "✓" },
-    { label: "Corporate & Group Travel", icon: "✓" },
-    { label: "Concierge-Level Support", icon: "✓" },
+    { label: "Independent Advisor (Host: Mainstreet Travel)", icon: "✓" },
+    { label: "Disney + Universal Specialist Planning", icon: "✓" },
+    { label: "Replies Within 24-48 Hours", icon: "✓" },
+    { label: "Personalized Itinerary + Booking Support", icon: "✓" },
   ];
 
   return (
@@ -24,6 +26,13 @@ export default function TrustBadges() {
             </div>
           ))}
         </div>
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-6 text-cloud/70">
+          Advisor-supported planning with transparent disclosures.{" "}
+          <Link href="/disclosures" className="font-medium text-gold transition-colors hover:text-white">
+            See advisor disclosures
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

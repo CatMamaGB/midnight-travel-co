@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const destinationMultipliers = {
@@ -19,6 +20,13 @@ const partyTypeMultipliers = {
   adultsOnly: 1.1,
   family: 1,
   group: 0.95,
+} as const;
+
+const destinationLabels = {
+  disneyWorld: "Walt Disney World",
+  disneyland: "Disneyland",
+  universalOrlando: "Universal Orlando",
+  universalHollywood: "Universal Hollywood",
 } as const;
 
 export default function BudgetEstimator() {
@@ -141,6 +149,14 @@ export default function BudgetEstimator() {
         <p className="mt-2 text-3xl font-semibold">
           ${estimate.low.toLocaleString()} - ${estimate.high.toLocaleString()}
         </p>
+        <Link
+          href={`/contact?source=budget-calculator&mode=quote&destination=${encodeURIComponent(
+            destinationLabels[destination]
+          )}&budgetMin=${estimate.low}&budgetMax=${estimate.high}&adults=${adults}&children=${children}`}
+          className="mt-5 inline-flex rounded-md bg-gold px-5 py-3 font-medium text-midnight transition-opacity hover:opacity-90"
+        >
+          Get a Free Quote in This Range
+        </Link>
       </div>
     </div>
   );

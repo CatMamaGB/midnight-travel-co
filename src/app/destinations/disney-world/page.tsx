@@ -3,16 +3,17 @@ import ServicePageTemplate from "@/components/ServicePageTemplate";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Walt Disney World Vacations",
-  "Plan a Walt Disney World vacation with park-by-park strategy, resort matching, dining support, and concierge-level planning.",
-  "/destinations/disney-world"
+  "Disney World Travel Agent & Vacation Planner for Families",
+  "Get expert Disney World vacation planning with resort matching, dining strategy, and Lightning Lane guidance tailored to your family.",
+  "/destinations/disney-world",
+  ["disney world travel agent", "disney world vacation planner", "disney family vacation planning"]
 );
 
 export default function DisneyWorldPage() {
   return (
     <ServicePageTemplate
-      title="Walt Disney World"
-      subtitle="Destination Guide"
+      title="Disney World Travel Agent & Vacation Planner"
+      subtitle="Family Disney Planning"
       heroDescription="A fully customized Disney World plan built around your group size, age range, budget, and pace. We help you avoid planning overload and focus on a smoother vacation."
       included={[
         {

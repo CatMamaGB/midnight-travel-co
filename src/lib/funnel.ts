@@ -26,7 +26,8 @@ export type PlanningToolSlug =
   | "packing-lists"
   | "crowd-calendar"
   | "ride-height-guide"
-  | "lightning-lane-guide";
+  | "lightning-lane-guide"
+  | "universal-express-pass-guide";
 
 export interface PlanningToolGuide {
   slug: PlanningToolSlug;
@@ -188,6 +189,13 @@ export const planningToolCards: FunnelCard[] = [
     href: "/planning-tools/lightning-lane-guide",
     ctaLabel: "View Guide",
   },
+  {
+    title: "Universal Express Pass Guide",
+    description:
+      "Decide when Universal Express Pass is worth it based on dates, hotel options, and ride priorities.",
+    href: "/planning-tools/universal-express-pass-guide",
+    ctaLabel: "View Express Guide",
+  },
 ];
 
 export const specialOfferCards: OfferCard[] = [
@@ -282,7 +290,7 @@ export const specialOfferCards: OfferCard[] = [
     primaryHref: "/planning-tools/crowd-calendar",
     primaryLabel: "Use Crowd Calendar First",
     secondaryHref:
-      "/contact?source=special-offers&tripType=first-time-visitors&interests=seasonal",
+      "/contact?source=special-offers&tripType=first-time-visitors&interests=relaxation",
     secondaryLabel: "Match My Dates to Current Offers",
     relatedLinks: [
       { label: "First-Time Visitor Trips", href: "/vacation-types/first-time-visitors" },
@@ -739,6 +747,70 @@ export const planningToolGuides: Record<PlanningToolSlug, PlanningToolGuide> = {
       "Define your must-do attractions by park day.",
       "Compare likely wait-time pressure for your travel window.",
       "Decide where Lightning Lane adds measurable value to your itinerary.",
+    ],
+  },
+  "universal-express-pass-guide": {
+    slug: "universal-express-pass-guide",
+    bestFor:
+      "Universal Orlando travelers deciding whether Express Pass, an express-inclusive hotel, or a slower park plan creates the best value.",
+    keyTakeaways: [
+      "Express Pass value rises with crowd pressure, short trips, and high thrill-ride priorities.",
+      "Premier hotel stays can change the math because select hotels include Express Unlimited benefits.",
+      "The best decision compares pass cost, hotel value, early entry, and your actual must-do ride list.",
+    ],
+    framework: [
+      {
+        title: "Start with your ride list",
+        description:
+          "Prioritize attractions like Hagrid's, VelociCoaster, Gringotts, and Minion-heavy family favorites before pricing add-ons.",
+      },
+      {
+        title: "Compare hotel-inclusive value",
+        description:
+          "For some parties, a premier Universal hotel with Express benefits can outperform buying passes separately.",
+      },
+      {
+        title: "Match Express to trip length",
+        description:
+          "One- or two-day Universal visits usually benefit more from Express than slower four-day itineraries.",
+      },
+      {
+        title: "Use early entry strategically",
+        description:
+          "Express does not replace good morning planning, especially for attractions with limited Express access or heavy opening demand.",
+      },
+    ],
+    commonMistakes: [
+      "Buying Express before comparing premier hotel package value.",
+      "Assuming Express solves every headline ride without checking current attraction rules.",
+      "Overpaying for low-crowd dates where rope drop and sequencing may be enough.",
+    ],
+    faqItems: [
+      {
+        question: "Is Universal Express Pass worth it?",
+        answer:
+          "It can be very worth it for peak dates, short trips, and thrill-focused groups, but the value depends on your hotel, dates, and ride goals.",
+      },
+      {
+        question: "Should I stay at a Universal premier hotel for Express?",
+        answer:
+          "Often, yes. If your party is large enough or your dates are crowded, included Express Unlimited benefits can be a major package advantage.",
+      },
+      {
+        question: "Does Express Pass include every ride?",
+        answer:
+          "Rules can change by attraction, so confirm the current participating ride list before relying on Express for your full strategy.",
+      },
+    ],
+    relatedLinks: [
+      { label: "Universal Orlando Destination Guide", href: "/destinations/universal-orlando" },
+      { label: "Universal Deals", href: "/special-offers#universal-deals" },
+      { label: "Crowd Calendar Guide", href: "/planning-tools/crowd-calendar" },
+    ],
+    nextSteps: [
+      "List your must-do Universal attractions and trip length.",
+      "Compare pass purchase cost against express-inclusive hotel packages.",
+      "Request advisor matching if you need help deciding whether Express is worth it for your dates.",
     ],
   },
 };

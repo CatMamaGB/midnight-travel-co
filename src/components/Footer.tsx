@@ -110,10 +110,10 @@ export default function Footer() {
             </a>
             <div>
               <Link
-                href="/contact"
+                href="/contact?source=footer"
                 className="inline-flex rounded-md bg-gold px-4 py-2 font-medium text-midnight transition-opacity hover:opacity-90"
               >
-                Plan My Vacation
+                Start Planning My Trip
               </Link>
             </div>
           </div>

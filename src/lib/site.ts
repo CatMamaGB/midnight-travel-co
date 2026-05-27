@@ -41,6 +41,7 @@ export const PLANNING_TOOL_LINKS = [
   { href: "/planning-tools/crowd-calendar", label: "Crowd Calendar" },
   { href: "/planning-tools/ride-height-guide", label: "Ride Height Guide" },
   { href: "/planning-tools/lightning-lane-guide", label: "Lightning Lane Guide" },
+  { href: "/planning-tools/universal-express-pass-guide", label: "Universal Express Pass Guide" },
 ] as const;
 
 export const SPECIAL_OFFER_LINKS = [

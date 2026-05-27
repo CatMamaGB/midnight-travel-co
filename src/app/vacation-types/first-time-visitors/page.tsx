@@ -3,16 +3,17 @@ import ServicePageTemplate from "@/components/ServicePageTemplate";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "First-Time Disney and Universal Visitors",
-  "First-time visitor planning for Disney and Universal with destination comparisons, practical guidance, and step-by-step support.",
-  "/vacation-types/first-time-visitors"
+  "First-Time Disney & Universal Vacation Planner",
+  "Get first-time trip support for Disney and Universal with destination comparison, itinerary planning, and booking guidance.",
+  "/vacation-types/first-time-visitors",
+  ["first time disney planner", "first time universal vacation", "disney vacation planner specialist"]
 );
 
 export default function FirstTimeVisitorsVacationTypePage() {
   return (
     <ServicePageTemplate
-      title="First-Time Visitors"
-      subtitle="Vacation Type"
+      title="First-Time Disney & Universal Vacation Planner"
+      subtitle="First-Time Visitor Specialist"
       heroDescription="Start with clarity instead of overwhelm. We help first-time Disney and Universal visitors compare options and move quickly to a confident plan."
       included={[
         {

@@ -282,3 +282,51 @@ export async function sendConfirmationEmail(formData: FormData) {
     throw error;
   }
 }
+
+export async function sendNurtureKickoffEmail(formData: FormData) {
+  const transporter = createTransporter();
+  const safeFirstName = escapeHtml(formData.firstName);
+  const destination = escapeHtml(formData.destination || "your vacation");
+
+  const mailOptions = {
+    from: process.env.GMAIL_USER,
+    to: formData.email,
+    subject: `Your 7-Day Disney & Universal Planning Prep - ${SITE_NAME}`,
+    html: `
+      <!DOCTYPE html>
+      <html>
+        <body style="font-family: Arial, sans-serif; color: #1F1F1F; line-height: 1.7;">
+          <div style="max-width: 620px; margin: 0 auto; padding: 24px;">
+            <h1 style="color: #0B132B;">Your planning prep starts now</h1>
+            <p>Hi ${safeFirstName},</p>
+            <p>
+              While we review your ${destination} inquiry, here is the planning sequence we recommend
+              following over the next week.
+            </p>
+            <ol>
+              <li><strong>Day 1:</strong> Confirm your must-have trip goals and non-negotiables.</li>
+              <li><strong>Day 3:</strong> Review common planning mistakes around dates, resorts, dining, and skip-the-line tools.</li>
+              <li><strong>Day 5:</strong> Compare your destination fit against your traveler ages, pace, and budget range.</li>
+              <li><strong>Day 7:</strong> Move toward booking once your package direction and strategy are clear.</li>
+            </ol>
+            <p>
+              Helpful next step:
+              <a href="${SITE_URL}/planning-tools" style="color: #26547C;">review our planning tools</a>
+              or
+              <a href="${SITE_URL}/special-offers" style="color: #26547C;">browse current offer categories</a>.
+            </p>
+            <p>Warmly,<br />${SITE_NAME}</p>
+          </div>
+        </body>
+      </html>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (error) {
+    console.error("Error sending nurture kickoff email:", error);
+    throw error;
+  }
+}

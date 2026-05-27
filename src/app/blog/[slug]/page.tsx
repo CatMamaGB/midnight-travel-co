@@ -238,8 +238,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <CTASection
         title="Want help choosing the right Disney or Universal experience?"
         description="Tell us about your travel style, group, and priorities, and we will build a plan that fits from the start."
-        primaryButtonText="Plan My Trip"
-        primaryButtonLink="/contact"
+        primaryButtonText="Start Planning My Trip"
+        primaryButtonLink={`/contact?source=blog-${post.slug}`}
+        secondaryButtonText="Get a Free Custom Quote"
+        secondaryButtonLink={`/contact?source=blog-${post.slug}&mode=quote`}
       />
     </main>
   );

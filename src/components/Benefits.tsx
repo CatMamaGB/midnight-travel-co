@@ -1,28 +1,36 @@
+import Link from "next/link";
+
 export default function Benefits() {
   const benefits = [
     {
-      title: "Personalized Planning",
-      description: "Every journey is unique. We take time to understand your preferences, priorities, and vision to craft an experience that reflects who you are.",
+      title: "Destination Fit",
+      description:
+        "Compare Disney World, Disneyland, Universal Orlando, and more before you commit dates, tickets, or resorts.",
     },
     {
-      title: "Expert Knowledge",
-      description: "Years of experience and insider knowledge ensure you have access to the best experiences, dining, and accommodations available.",
+      title: "Park-Day Strategy",
+      description:
+        "Build realistic ride, show, and rest blocks, including Lightning Lane and Express Pass decisions.",
     },
     {
-      title: "Time Saved",
-      description: "Let us handle the research, bookings, and logistics. Your time is valuable—spend it anticipating your journey, not planning it.",
+      title: "Dining That Works",
+      description:
+        "Prioritize reservations without overbooking your park flow or creating avoidable transportation stress.",
     },
     {
-      title: "Peace of Mind",
-      description: "Travel with confidence knowing every detail has been thoughtfully considered and arranged. We're here to support you throughout your journey.",
+      title: "Offer & Budget Clarity",
+      description:
+        "Match promotions and package options to your real travel window, group size, and comfort level.",
     },
     {
-      title: "Exclusive Access",
-      description: "Our relationships and expertise open doors to experiences and opportunities that may not be available through standard channels.",
+      title: "Group Coordination",
+      description:
+        "Plan reunions, milestones, and multi-room trips with one clear itinerary direction and shared expectations.",
     },
     {
-      title: "Ongoing Support",
-      description: "From initial planning through your return home, we're available to assist with questions, changes, or unexpected needs.",
+      title: "Support Through Travel Day",
+      description:
+        "Get updates, tips, and last-mile guidance before and during your Disney or Universal vacation.",
     },
   ];
 
@@ -31,10 +39,10 @@ export default function Benefits() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-light text-midnight mb-4 tracking-tight">
-            Why Work With a Travel Advisor
+            Why Work With a Disney & Universal Planner
           </h2>
           <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
-            Thoughtful planning, expert guidance, and dedicated support throughout your journey
+            Park-specific guidance for the decisions that most affect budget, wait times, dining, and daily pace.
           </p>
         </div>
 
@@ -53,6 +61,14 @@ export default function Benefits() {
               </p>
             </div>
           ))}
+        </div>
+        <div className="mt-12 text-center">
+          <Link
+            href="/planning-tools"
+            className="inline-flex rounded-md border border-midnight/15 px-5 py-3 font-medium text-midnight transition-colors hover:border-midnight hover:bg-midnight hover:text-white"
+          >
+            Explore Planning Tools
+          </Link>
         </div>
       </div>
     </section>

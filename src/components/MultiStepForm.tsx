@@ -14,6 +14,8 @@ import Step6Vision from "./form-steps/Step6Vision";
 import Step7Consent from "./form-steps/Step7Consent";
 
 const TOTAL_STEPS = 7;
+const QUOTE_MODE_STEPS = 4;
+const FORM_STORAGE_KEY = "midnight-travel-inquiry-draft";
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function MultiStepForm() {
@@ -48,6 +50,33 @@ export default function MultiStepForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [prefillApplied, setPrefillApplied] = useState(false);
+  const mode = searchParams.get("mode")?.trim() ?? "";
+  const sourceParam = searchParams.get("source")?.trim() ?? "";
+  const isQuoteMode = mode === "quote" || sourceParam === "custom-quote-request";
+  const totalSteps = isQuoteMode ? QUOTE_MODE_STEPS : TOTAL_STEPS;
+
+  useEffect(() => {
+    const savedDraft = window.localStorage.getItem(FORM_STORAGE_KEY);
+
+    if (!savedDraft) {
+      return;
+    }
+
+    try {
+      const parsedDraft = JSON.parse(savedDraft) as Partial<FormData>;
+      setFormData((previous) => ({
+        ...previous,
+        ...parsedDraft,
+        formStartedAt: previous.formStartedAt,
+      }));
+    } catch {
+      window.localStorage.removeItem(FORM_STORAGE_KEY);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(FORM_STORAGE_KEY, JSON.stringify(formData));
+  }, [formData]);
 
   useEffect(() => {
     if (prefillApplied) {
@@ -57,6 +86,10 @@ export default function MultiStepForm() {
     const destination = searchParams.get("destination")?.trim() ?? "";
     const tripType = searchParams.get("tripType")?.trim() ?? "";
     const source = searchParams.get("source")?.trim() ?? "Plan My Vacation Form";
+    const budgetMin = Number(searchParams.get("budgetMin"));
+    const budgetMax = Number(searchParams.get("budgetMax"));
+    const adults = Number(searchParams.get("adults"));
+    const children = Number(searchParams.get("children"));
     const landingPage =
       searchParams.get("landingPage")?.trim() ||
       (typeof document !== "undefined" ? document.referrer : "") ||
@@ -71,17 +104,29 @@ export default function MultiStepForm() {
       .map((interest) => interest.trim())
       .filter(Boolean);
 
-    setFormData((previous) => ({
-      ...previous,
-      destination: destination || previous.destination,
-      tripType: tripType || previous.tripType,
-      interests: interests.length > 0 ? interests : previous.interests,
-      source,
-      landingPage,
-      utmSource,
-      utmMedium,
-      utmCampaign,
-    }));
+    setFormData((previous) => {
+      const nextBudgetMin =
+        Number.isFinite(budgetMin) && budgetMin >= 1000 ? budgetMin : previous.budgetMin;
+
+      return {
+        ...previous,
+        destination: destination || previous.destination,
+        tripType: tripType || previous.tripType,
+        budgetMin: nextBudgetMin,
+        budgetMax:
+          Number.isFinite(budgetMax) && budgetMax >= nextBudgetMin
+            ? budgetMax
+            : previous.budgetMax,
+        adults: Number.isFinite(adults) && adults >= 1 ? adults : previous.adults,
+        children: Number.isFinite(children) && children >= 0 ? children : previous.children,
+        interests: interests.length > 0 ? interests : previous.interests,
+        source,
+        landingPage,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+      };
+    });
 
     setPrefillApplied(true);
   }, [prefillApplied, searchParams]);
@@ -98,6 +143,50 @@ export default function MultiStepForm() {
 
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {};
+
+    if (isQuoteMode) {
+      switch (step) {
+        case 1:
+          if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+          if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
+          if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+          }
+          if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+          break;
+        case 2:
+          if (!formData.destination.trim()) newErrors.destination = "Destination is required";
+          if (!formData.tripType) newErrors.tripType = "Trip type is required";
+          if (!formData.startDate) newErrors.startDate = "Start date is required";
+          if (!formData.endDate) newErrors.endDate = "End date is required";
+          break;
+        case 3:
+          if (formData.adults < 1) newErrors.adults = "At least 1 adult is required";
+          if (formData.children > 0 && formData.childAges.length !== formData.children) {
+            newErrors.childAges = "Please provide age for each child";
+          }
+          if (formData.budgetMin < 1000) {
+            newErrors.budgetMin = "Minimum budget must be at least $1,000";
+          }
+          if (formData.budgetMax < formData.budgetMin) {
+            newErrors.budgetMax = "Maximum budget must be greater than minimum";
+          }
+          break;
+        case 4:
+          if (!formData.consent) {
+            newErrors.consent = "You must agree to the terms to continue";
+          }
+          if (turnstileSiteKey && !formData.turnstileToken) {
+            newErrors.turnstileToken = "Please complete the spam protection check.";
+          }
+          break;
+      }
+
+      setErrors(newErrors);
+      return Object.keys(newErrors).length === 0;
+    }
 
     switch (step) {
       case 1:
@@ -169,16 +258,27 @@ export default function MultiStepForm() {
   };
 
   const handleSubmit = async () => {
-    if (!validateStep(7)) return;
+    if (!validateStep(totalSteps)) return;
 
     setIsSubmitting(true);
     try {
+      const submissionData: FormData = isQuoteMode
+        ? {
+            ...formData,
+            interests: formData.interests.length > 0 ? formData.interests : ["custom-quote"],
+            vision:
+              formData.vision.trim() ||
+              "Quick quote request. Please recommend destination, package, and planning options based on the submitted trip basics and budget range.",
+            source: formData.source || "custom-quote-request",
+          }
+        : formData;
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submissionData),
       });
       const payload = (await response.json()) as {
         error?: string;
@@ -198,6 +298,7 @@ export default function MultiStepForm() {
         params.set("status", "partial");
       }
 
+      window.localStorage.removeItem(FORM_STORAGE_KEY);
       router.push(`/thank-you${params.toString() ? `?${params.toString()}` : ""}`);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -213,6 +314,26 @@ export default function MultiStepForm() {
   };
 
   const renderStep = () => {
+    if (isQuoteMode) {
+      switch (currentStep) {
+        case 1:
+          return <Step1ContactInfo data={formData} updateData={updateData} errors={errors} />;
+        case 2:
+          return <Step2TripBasics data={formData} updateData={updateData} errors={errors} />;
+        case 3:
+          return (
+            <div className="space-y-8">
+              <Step3Travelers data={formData} updateData={updateData} errors={errors} />
+              <Step4Budget data={formData} updateData={updateData} errors={errors} />
+            </div>
+          );
+        case 4:
+          return <Step7Consent data={formData} updateData={updateData} errors={errors} />;
+        default:
+          return null;
+      }
+    }
+
     switch (currentStep) {
       case 1:
         return <Step1ContactInfo data={formData} updateData={updateData} errors={errors} />;
@@ -236,7 +357,13 @@ export default function MultiStepForm() {
   return (
     <div className="min-h-screen bg-cloud py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <ProgressIndicator currentStep={currentStep} totalSteps={TOTAL_STEPS} />
+        <ProgressIndicator currentStep={currentStep} totalSteps={totalSteps} />
+
+        {isQuoteMode && (
+          <div className="mb-6 rounded-lg border border-gold/40 bg-white px-5 py-4 text-center text-sm text-charcoal/80">
+            Quick quote mode: fewer required steps, with your source and budget context preserved.
+          </div>
+        )}
 
         <div className="rounded-lg bg-white p-8 text-charcoal shadow-md">
           <div className="hidden" aria-hidden="true">
@@ -284,7 +411,7 @@ export default function MultiStepForm() {
               <div />
             )}
 
-            {currentStep < TOTAL_STEPS ? (
+            {currentStep < totalSteps ? (
               <button
                 type="button"
                 onClick={handleNext}

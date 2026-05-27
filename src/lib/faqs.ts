@@ -1,23 +1,23 @@
 export const faqs = [
   {
-    question: "How does the planning process work?",
+    question: "Do you charge a planning fee?",
     answer:
-      "We begin with a conversation to understand your vision, preferences, and priorities. From there, we curate personalized recommendations and handle the details that bring your trip to life.",
+      "We start with a complimentary planning inquiry so we can understand your trip goals. Some complex planning services or custom concierge requests may include fees, and we will always explain any fee before work begins.",
   },
   {
-    question: "What destinations do you specialize in?",
+    question: "Disney or Universal: which is better for our family?",
     answer:
-      "We specialize in Disney destinations, Universal experiences, VIP concierge planning, and milestone travel moments that deserve elevated care and attention.",
+      "It depends on age range, ride style, budget, and how much planning complexity you want. We compare Disney and Universal options so your first choice fits your actual travelers.",
   },
   {
     question: "How far in advance should I reach out?",
     answer:
-      "We recommend reaching out at least 60 to 90 days in advance when possible. Earlier planning usually means more availability, smoother logistics, and stronger options.",
+      "We recommend reaching out at least 60 to 90 days in advance when possible. Earlier planning usually means more resort availability, stronger dining options, and more time to watch offers.",
   },
   {
-    question: "Can you help with special occasions or custom requests?",
+    question: "Can you help with Lightning Lane or Universal Express Pass strategy?",
     answer:
-      "Yes. We can help shape birthdays, anniversaries, celebrations, dining priorities, resort preferences, and other custom touches that make a trip feel personal.",
+      "Yes. We help decide when skip-the-line options are worth it, which attractions to prioritize, and how those choices fit your dates, budget, and park-day plan.",
   },
   {
     question: "What happens after I submit the inquiry form?",

@@ -26,6 +26,7 @@ const routes = [
   "/planning-tools/crowd-calendar",
   "/planning-tools/ride-height-guide",
   "/planning-tools/lightning-lane-guide",
+  "/planning-tools/universal-express-pass-guide",
   "/special-offers",
   "/services",
   "/faq",

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { FormData } from "@/types/form";
-import { sendNotificationEmail, sendConfirmationEmail } from "@/lib/email";
+import { sendNotificationEmail, sendConfirmationEmail, sendNurtureKickoffEmail } from "@/lib/email";
 import { sendOperationalAlert } from "@/lib/alerts";
 import { storeContactInquiry } from "@/lib/contactStorage";
 import { checkContactRateLimit } from "@/lib/rateLimit";
@@ -193,9 +193,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Send emails and store the inquiry in parallel for faster processing.
-    const [notificationResult, confirmationResult, storageResult] = await Promise.allSettled([
+    const [notificationResult, confirmationResult, nurtureResult, storageResult] = await Promise.allSettled([
       sendNotificationEmail(formData),
       sendConfirmationEmail(formData),
+      sendNurtureKickoffEmail(formData),
       storeContactInquiry(formData),
     ]);
 
@@ -206,6 +207,10 @@ export async function POST(request: NextRequest) {
 
     if (confirmationResult.status === "rejected") {
       console.error("Failed to send confirmation email:", confirmationResult.reason);
+    }
+
+    if (nurtureResult.status === "rejected") {
+      console.error("Failed to send nurture kickoff email:", nurtureResult.reason);
     }
 
     if (storageResult.status === "rejected") {
@@ -227,6 +232,10 @@ export async function POST(request: NextRequest) {
       warnings.push("Traveler confirmation email failed.");
     }
 
+    if (nurtureResult.status === "rejected") {
+      warnings.push("Traveler nurture kickoff email failed.");
+    }
+
     if (storageResult.status === "rejected") {
       warnings.push("Inquiry storage failed.");
     } else if (!storageSucceeded && !storageResult.value.skipped) {
@@ -237,6 +246,7 @@ export async function POST(request: NextRequest) {
     if (
       notificationResult.status === "rejected" &&
       confirmationResult.status === "rejected" &&
+      nurtureResult.status === "rejected" &&
       !storageSucceeded
     ) {
       try {
@@ -247,6 +257,7 @@ export async function POST(request: NextRequest) {
             `Rate limiting source: ${rateLimitResult.source}.`,
             "Notification email failed.",
             "Confirmation email failed.",
+            "Nurture kickoff email failed.",
             "Inquiry storage failed or was skipped.",
           ],
         });
@@ -287,6 +298,7 @@ export async function POST(request: NextRequest) {
         emailsSent: {
           notification: notificationResult.status === "fulfilled",
           confirmation: confirmationResult.status === "fulfilled",
+          nurtureKickoff: nurtureResult.status === "fulfilled",
         },
         warnings,
         storage: storageResult.status === "fulfilled"

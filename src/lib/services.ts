@@ -7,31 +7,31 @@ export interface ServiceSummary {
 
 export const serviceSummaries: ServiceSummary[] = [
   {
-    title: "Disney Experiences",
+    title: "Disney World & Disneyland",
     description:
-      "Magical adventures crafted with attention to every detail. From character dining to Lightning Lane strategy, we create unforgettable moments.",
-    href: "/disney",
+      "Resort and ticket guidance, dining reservations, Lightning Lane strategy, and day-by-day park plans for Disney vacations.",
+    href: "/destinations/disney-world",
     accentColor: "bg-gold",
   },
   {
-    title: "Universal Studios",
+    title: "Universal Orlando & Hollywood",
     description:
-      "Thrilling theme park experiences and exclusive access. Let us handle the planning so you can focus on the adventure.",
-    href: "/universal",
+      "Express Pass value checks, hotel strategy, early-entry planning, and ride-focused itineraries for Universal trips.",
+    href: "/destinations/universal-orlando",
     accentColor: "bg-gold",
   },
   {
-    title: "VIP Concierge",
+    title: "Disney Cruise Add-Ons",
     description:
-      "Personalized service that anticipates your needs. Every detail curated, every moment elevated to perfection.",
-    href: "/vip-concierge",
+      "Pair park time with Disney Cruise Line planning, pre-cruise stays, transfers, and family-friendly sailing strategy.",
+    href: "/destinations/disney-cruise-line",
     accentColor: "bg-gold",
   },
   {
-    title: "Special Events",
+    title: "Universal Hollywood",
     description:
-      "Celebrations, milestones, and unforgettable group moments planned with polish, personality, and seamless coordination.",
-    href: "/special-events",
+      "Studio-focused California trips with park strategy, hotel recommendations, and Los Angeles add-on planning.",
+    href: "/destinations/universal-hollywood",
     accentColor: "bg-gold",
   },
 ];

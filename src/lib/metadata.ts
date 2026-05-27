@@ -4,11 +4,13 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 export function buildPageMetadata(
   title: string,
   description: string,
-  path = "/"
+  path = "/",
+  keywords?: string[]
 ): Metadata {
   return {
     title,
     description,
+    keywords,
     alternates: {
       canonical: `${SITE_URL}${path === "/" ? "" : path}`,
     },

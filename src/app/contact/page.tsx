@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import MultiStepForm from "@/components/MultiStepForm";
 import { buildPageMetadata } from "@/lib/metadata";
-import { CONTACT_EMAIL, SITE_NAME } from "@/lib/site";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = buildPageMetadata(
   "Plan My Vacation",
@@ -37,10 +37,10 @@ export default function Contact() {
               Start Planning
             </Link>
             <Link
-              href="/contact?source=custom-quote-request"
+              href="/contact?source=custom-quote-request&mode=quote"
               className="inline-flex rounded-md border border-midnight/20 bg-white px-5 py-3 text-sm font-medium text-midnight transition-colors hover:border-midnight hover:bg-cloud"
             >
-              Get a Custom Quote
+              Get a Free Custom Quote
             </Link>
             <a
               href={`mailto:${CONTACT_EMAIL}?subject=Free%20Consultation%20Request`}

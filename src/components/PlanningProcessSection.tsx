@@ -3,14 +3,16 @@ import { planningProcess } from "@/lib/funnel";
 interface PlanningProcessSectionProps {
   title?: string;
   description?: string;
+  id?: string;
 }
 
 export default function PlanningProcessSection({
   title = "Our Planning Process",
   description = "A guided process designed to move your trip from dream to booked with less stress and better decisions.",
+  id,
 }: PlanningProcessSectionProps) {
   return (
-    <section className="bg-white py-16">
+    <section id={id} className="bg-white py-16">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto mb-12 max-w-3xl text-center">
           <h2 className="mb-4 text-3xl font-semibold tracking-tight text-midnight md:text-4xl">

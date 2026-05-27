@@ -10,12 +10,12 @@ export default function FAQPreview() {
             Frequently Asked Questions
           </h2>
           <p className="text-xl text-charcoal/80 max-w-2xl mx-auto font-light leading-relaxed">
-            Common questions about our services and process
+            Common questions from Disney and Universal travelers
           </p>
         </div>
 
         <div className="space-y-6 mb-12">
-          {faqs.slice(0, 3).map((faq, index) => (
+          {faqs.slice(0, 4).map((faq, index) => (
             <div
               key={index}
               className="border-b border-silver/50 pb-6 last:border-0"

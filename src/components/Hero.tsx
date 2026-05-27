@@ -18,29 +18,28 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-20 text-center">
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight tracking-tight">
-          Where Dreams Become
-          <span className="block text-gold font-normal mt-2">Extraordinary Journeys</span>
+          Disney &amp; Universal Vacation Planning
+          <span className="block text-gold font-normal mt-2">Built Around Your Family</span>
         </h1>
         <p className="text-xl md:text-2xl text-cloud/90 mb-4 max-w-3xl mx-auto leading-relaxed font-light">
-          Curated travel experiences crafted with precision, care, and an unwavering commitment
-          to bringing your vision to life.
+          Independent advisor support for Disney World, Disneyland, Universal Orlando, and more.
         </p>
         <p className="text-lg text-silver mb-12 max-w-2xl mx-auto leading-relaxed">
-          From magical theme park adventures to exclusive VIP concierge services,
-          we handle every detail so you can focus on creating memories.
+          Stop juggling blogs and spreadsheets. Get a clear park plan, dining strategy, and
+          booking support before your trip ever begins.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/contact"
+            href="/contact?source=homepage-hero"
             className="px-8 py-4 bg-gold text-midnight rounded-md hover:bg-opacity-90 transition-all duration-300 font-medium text-lg"
           >
-            Begin Your Journey
+            Start Planning My Trip
           </Link>
           <Link
-            href="/about"
+            href="/destinations"
             className="px-8 py-4 border-2 border-gold text-gold rounded-md hover:bg-gold/10 transition-all duration-300 font-medium text-lg"
           >
-            Learn More
+            Compare Destinations
           </Link>
         </div>
       </div>

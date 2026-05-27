@@ -5,9 +5,10 @@ import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
-  "Disney and Universal Crowd Calendar Guide",
-  "Seasonal Disney and Universal crowd guidance to help choose better travel windows and planning strategies.",
-  "/planning-tools/crowd-calendar"
+  "Best Time to Visit Disney World (Crowds, Value, and Weather Guide)",
+  "Use seasonal crowd and value patterns to choose stronger Disney World travel windows and avoid peak-pressure dates.",
+  "/planning-tools/crowd-calendar",
+  ["best time to visit disney world", "disney crowd calendar", "disney shoulder season"]
 );
 
 export default function CrowdCalendarPage() {
@@ -21,7 +22,7 @@ export default function CrowdCalendarPage() {
             Planning Tool
           </p>
           <h1 className="mb-6 text-4xl font-semibold tracking-tight text-midnight md:text-5xl">
-            Crowd Calendar Guide
+            Best Time to Visit Disney World
           </h1>
           <p className="mx-auto max-w-3xl text-lg leading-8 text-charcoal/80">
             Crowd levels change every year, but seasonal tendencies can still help you pick better

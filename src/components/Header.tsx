@@ -32,10 +32,10 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/contact"
+          href="/contact?source=header"
           className="hidden rounded-md bg-midnight px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-royal md:inline-flex"
         >
-          Plan My Vacation
+          Start Planning My Trip
         </Link>
 
         <button
@@ -75,11 +75,11 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href="/contact?source=mobile-header"
               className="mt-2 inline-flex justify-center rounded-md bg-midnight px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-royal"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Plan My Vacation
+              Start Planning My Trip
             </Link>
           </nav>
         </div>
