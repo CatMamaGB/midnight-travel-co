@@ -50,8 +50,12 @@ export default function FamilyVacationTypePage() {
       }}
       cta={{
         title: "Ready to Plan Your Family Vacation?",
-        primaryButtonText: "Start Family Trip Planning",
-        primaryButtonLink: "/contact?source=vacation-type-families&tripType=families",
+        description:
+          "Review family-focused planning tools first, then request advisor support for a full itinerary.",
+        primaryButtonText: "Use Family Ride Height Guide",
+        primaryButtonLink: "/planning-tools/ride-height-guide",
+        secondaryButtonText: "Start Family Trip Planning",
+        secondaryButtonLink: "/contact?source=vacation-type-families&tripType=families",
       }}
     />
   );

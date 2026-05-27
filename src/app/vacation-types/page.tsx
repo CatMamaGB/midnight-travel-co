@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import CTASection from "@/components/CTASection";
 import FunnelCardGrid from "@/components/FunnelCardGrid";
 import { vacationTypeCards } from "@/lib/funnel";
@@ -34,13 +35,69 @@ export default function VacationTypesHubPage() {
         </div>
       </section>
 
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="mb-8 text-center text-3xl font-semibold tracking-tight text-midnight md:text-4xl">
+            Recommended planning tools by trip type
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            <Link
+              href="/planning-tools/ride-height-guide"
+              className="rounded-xl border border-silver/60 px-6 py-5 text-midnight transition-colors hover:bg-midnight hover:text-white"
+            >
+              Families: ride height planning
+            </Link>
+            <Link
+              href="/planning-tools/dining-guide"
+              className="rounded-xl border border-silver/60 px-6 py-5 text-midnight transition-colors hover:bg-midnight hover:text-white"
+            >
+              Adults-only: dining strategy
+            </Link>
+            <Link
+              href="/planning-tools/crowd-calendar"
+              className="rounded-xl border border-silver/60 px-6 py-5 text-midnight transition-colors hover:bg-midnight hover:text-white"
+            >
+              First-time: crowd and date timing
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <h2 className="mb-8 text-center text-3xl font-semibold tracking-tight text-midnight md:text-4xl">
+            Offers aligned to trip goals
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            <Link
+              href="/special-offers#kids-free-promos"
+              className="rounded-xl bg-white px-6 py-5 text-midnight shadow-sm transition-colors hover:bg-midnight hover:text-white"
+            >
+              Family and kids-focused offers
+            </Link>
+            <Link
+              href="/special-offers#dining-plans"
+              className="rounded-xl bg-white px-6 py-5 text-midnight shadow-sm transition-colors hover:bg-midnight hover:text-white"
+            >
+              Dining plan opportunities
+            </Link>
+            <Link
+              href="/special-offers#seasonal-offers"
+              className="rounded-xl bg-white px-6 py-5 text-midnight shadow-sm transition-colors hover:bg-midnight hover:text-white"
+            >
+              Seasonal timing offers
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <CTASection
         title="Ready for a trip strategy built around your group?"
-        description="Use our planning form to share who is traveling, your budget range, and the experiences that matter most."
-        primaryButtonText="Start Planning"
-        primaryButtonLink="/contact?source=vacation-types-hub"
-        secondaryButtonText="Book Free Consultation"
-        secondaryButtonLink="mailto:travel.midnightco@gmail.com?subject=Free%20Consultation%20Request"
+        description="Navigate to the most relevant planning tools and offers first, then share your details for an advisor-built final plan."
+        primaryButtonText="Open Planning Tools"
+        primaryButtonLink="/planning-tools"
+        secondaryButtonText="Request Trip-Type Matching"
+        secondaryButtonLink="/contact?source=vacation-types-hub"
       />
     </main>
   );

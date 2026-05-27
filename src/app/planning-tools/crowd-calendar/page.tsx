@@ -1,24 +1,8 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import PlanningGuideSections from "@/components/PlanningGuideSections";
+import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
-
-const crowdWindows = [
-  {
-    season: "Lower Crowd Tendencies",
-    timing: "Late January, early February, and select early September weeks",
-    note: "Strong fit for flexible travelers who value shorter waits and easier pacing.",
-  },
-  {
-    season: "Moderate Crowd Periods",
-    timing: "Late April to early May and select late August windows",
-    note: "Good balance when combined with smart ride and dining strategy.",
-  },
-  {
-    season: "High Crowd Seasons",
-    timing: "Holiday weeks, spring break, and major event windows",
-    note: "Requires stronger planning around reservations and park-day sequencing.",
-  },
-];
 
 export const metadata: Metadata = buildPageMetadata(
   "Disney and Universal Crowd Calendar Guide",
@@ -27,6 +11,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function CrowdCalendarPage() {
+  const guide = planningToolGuides["crowd-calendar"];
+
   return (
     <main className="min-h-screen bg-cloud">
       <section className="bg-white">
@@ -44,23 +30,15 @@ export default function CrowdCalendarPage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto grid max-w-5xl gap-6 px-4">
-          {crowdWindows.map((window) => (
-            <article key={window.season} className="rounded-2xl bg-white p-8 shadow-sm">
-              <h2 className="mb-2 text-2xl font-semibold text-midnight">{window.season}</h2>
-              <p className="mb-4 text-charcoal/80">{window.timing}</p>
-              <p className="leading-8 text-charcoal/80">{window.note}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <PlanningGuideSections guide={guide} />
 
       <CTASection
         title="Need help picking your best dates?"
-        description="Share your date flexibility and goals, and we will recommend the best-fit travel windows."
-        primaryButtonText="Plan Around Better Dates"
-        primaryButtonLink="/contact?source=crowd-calendar"
+        description="Start with our seasonal offers and trip-style paths, then request advisor matching once your date window is narrowed."
+        primaryButtonText="View Seasonal Offers"
+        primaryButtonLink="/special-offers#seasonal-offers"
+        secondaryButtonText="Request Date Matching Help"
+        secondaryButtonLink="/contact?source=crowd-calendar"
       />
     </main>
   );

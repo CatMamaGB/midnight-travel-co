@@ -50,12 +50,13 @@ export default function DisneyWorldPage() {
       }}
       cta={{
         title: "Ready to Plan Walt Disney World?",
-        description: "Tell us who is traveling and we will build your custom Disney World roadmap.",
-        primaryButtonText: "Plan My Disney World Vacation",
-        primaryButtonLink:
+        description:
+          "Review Disney-focused offers and strategy tools first, then request your custom Disney World roadmap.",
+        primaryButtonText: "Review Disney Offers",
+        primaryButtonLink: "/special-offers#disney-discounts",
+        secondaryButtonText: "Plan My Disney World Vacation",
+        secondaryButtonLink:
           "/contact?source=destination-disney-world&destination=Walt%20Disney%20World&tripType=families",
-        secondaryButtonText: "Get a Custom Quote",
-        secondaryButtonLink: "/contact?source=destination-disney-world&destination=Walt%20Disney%20World",
       }}
     />
   );

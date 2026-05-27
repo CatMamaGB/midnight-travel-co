@@ -50,8 +50,12 @@ export default function FirstTimeVisitorsVacationTypePage() {
       }}
       cta={{
         title: "Ready to Plan Your First Trip?",
-        primaryButtonText: "Start First-Time Planning",
-        primaryButtonLink:
+        description:
+          "Start with date and crowd strategy first, then request expert trip matching once your direction is clear.",
+        primaryButtonText: "Use Crowd Calendar Guide",
+        primaryButtonLink: "/planning-tools/crowd-calendar",
+        secondaryButtonText: "Start First-Time Planning",
+        secondaryButtonLink:
           "/contact?source=vacation-type-first-time-visitors&tripType=first-time-visitors",
       }}
     />

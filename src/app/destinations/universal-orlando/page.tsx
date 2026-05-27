@@ -50,10 +50,13 @@ export default function UniversalOrlandoPage() {
       }}
       cta={{
         title: "Ready to Plan Universal Orlando?",
-        description: "Share your group and trip goals and we will map a practical Universal strategy.",
-        primaryButtonText: "Plan My Universal Vacation",
-        primaryButtonLink:
-          "/contact?source=destination-universal-orlando&destination=Universal%20Orlando&tripType=adventure",
+        description:
+          "Explore Universal deal windows first, then request a practical advisor-built itinerary for your exact trip goals.",
+        primaryButtonText: "Review Universal Deals",
+        primaryButtonLink: "/special-offers#universal-deals",
+        secondaryButtonText: "Plan My Universal Vacation",
+        secondaryButtonLink:
+          "/contact?source=destination-universal-orlando&destination=Universal%20Orlando&tripType=group-travel",
       }}
     />
   );

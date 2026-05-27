@@ -1,36 +1,8 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import PlanningGuideSections from "@/components/PlanningGuideSections";
+import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
-
-const packingLists = [
-  {
-    title: "Family Park Day Essentials",
-    items: [
-      "Cooling towels and refillable water bottles",
-      "Portable charger and charging cables",
-      "Rain ponchos and compact stroller cover",
-      "Kid snacks and backup outfit",
-    ],
-  },
-  {
-    title: "Adults-Only Trip Essentials",
-    items: [
-      "Comfortable footwear for long park days",
-      "Light evening layer for dining and shows",
-      "Crossbody bag with quick-access essentials",
-      "Reservation confirmations and ID backup",
-    ],
-  },
-  {
-    title: "Summer + Rain Season Additions",
-    items: [
-      "Quick-dry clothing and socks",
-      "Mini fan and electrolyte packets",
-      "Waterproof phone pouch",
-      "Zipper pouches for electronics",
-    ],
-  },
-];
 
 export const metadata: Metadata = buildPageMetadata(
   "Disney and Universal Packing Lists",
@@ -39,6 +11,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function PackingListsPage() {
+  const guide = planningToolGuides["packing-lists"];
+
   return (
     <main className="min-h-screen bg-cloud">
       <section className="bg-white">
@@ -56,29 +30,15 @@ export default function PackingListsPage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4 md:grid-cols-3">
-          {packingLists.map((list) => (
-            <article key={list.title} className="rounded-2xl bg-white p-8 shadow-sm">
-              <h2 className="mb-4 text-2xl font-semibold text-midnight">{list.title}</h2>
-              <ul className="space-y-3 text-charcoal/80">
-                {list.items.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span className="text-gold">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-      </section>
+      <PlanningGuideSections guide={guide} />
 
       <CTASection
         title="Need a packing strategy matched to your itinerary?"
-        description="Tell us your destination and travel dates and we will include custom prep guidance in your trip plan."
-        primaryButtonText="Start Planning"
-        primaryButtonLink="/contact?source=packing-lists"
+        description="Start with your trip type and weather window, then request personalized prep guidance for your exact itinerary."
+        primaryButtonText="Explore Family Planning Path"
+        primaryButtonLink="/vacation-types/families"
+        secondaryButtonText="Request Custom Prep Plan"
+        secondaryButtonLink="/contact?source=packing-lists"
       />
     </main>
   );

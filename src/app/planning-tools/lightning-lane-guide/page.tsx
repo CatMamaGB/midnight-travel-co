@@ -1,24 +1,8 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import PlanningGuideSections from "@/components/PlanningGuideSections";
+import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
-
-const lightningLaneFramework = [
-  {
-    title: "Prioritize By Wait-Time Risk",
-    description:
-      "Use paid skip-the-line options for the attractions that regularly produce the highest standby delays.",
-  },
-  {
-    title: "Do Not Buy It Blindly",
-    description:
-      "Lightning Lane value depends on your dates, age range, and how many top-tier rides you plan to do.",
-  },
-  {
-    title: "Pair It With Park Sequencing",
-    description:
-      "The strongest strategy combines reservation timing, rope drop planning, and a realistic midday reset.",
-  },
-];
 
 export const metadata: Metadata = buildPageMetadata(
   "Lightning Lane Planning Guide",
@@ -27,6 +11,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function LightningLaneGuidePage() {
+  const guide = planningToolGuides["lightning-lane-guide"];
+
   return (
     <main className="min-h-screen bg-cloud">
       <section className="bg-white">
@@ -44,22 +30,15 @@ export default function LightningLaneGuidePage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-3">
-          {lightningLaneFramework.map((item) => (
-            <article key={item.title} className="rounded-xl bg-white p-7 shadow-sm">
-              <h2 className="mb-3 text-2xl font-semibold text-midnight">{item.title}</h2>
-              <p className="leading-8 text-charcoal/80">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <PlanningGuideSections guide={guide} />
 
       <CTASection
         title="Need a Lightning Lane plan for your exact dates?"
-        description="We can map a day-by-day strategy for ride priorities, reservation timing, and budget fit."
-        primaryButtonText="Build My Park Strategy"
-        primaryButtonLink="/contact?source=lightning-lane-guide&destination=Walt%20Disney%20World"
+        description="Use destination and offer strategy first, then request a day-by-day reservation and ride sequencing plan."
+        primaryButtonText="Explore Disney World Strategy"
+        primaryButtonLink="/destinations/disney-world"
+        secondaryButtonText="Request Custom Lightning Lane Plan"
+        secondaryButtonLink="/contact?source=lightning-lane-guide&destination=Walt%20Disney%20World"
       />
     </main>
   );

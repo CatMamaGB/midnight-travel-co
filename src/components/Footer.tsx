@@ -6,6 +6,7 @@ import {
   LEGAL_LINKS,
   PLANNING_TOOL_LINKS,
   PRIMARY_NAV_LINKS,
+  SPECIAL_OFFER_LINKS,
   VACATION_TYPE_LINKS,
 } from "@/lib/site";
 
@@ -68,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div>
+        <div className="space-y-10">
           <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
             Planning Tools
           </h3>
@@ -80,6 +81,21 @@ export default function Footer() {
                 </Link>
               </div>
             ))}
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-gold">
+              Special Offers
+            </h3>
+            <div className="space-y-3 text-sm text-cloud/80">
+              {SPECIAL_OFFER_LINKS.slice(0, 4).map((link) => (
+                <div key={link.href}>
+                  <Link href={link.href} className="transition-colors hover:text-white">
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

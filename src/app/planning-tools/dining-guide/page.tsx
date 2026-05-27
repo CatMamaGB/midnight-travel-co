@@ -1,29 +1,8 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
+import PlanningGuideSections from "@/components/PlanningGuideSections";
+import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
-
-const diningPriorityFramework = [
-  {
-    title: "Pick One Signature Meal Per Day",
-    description:
-      "Anchor each day with one dining priority and keep other meals flexible so reservations do not overcontrol your itinerary.",
-  },
-  {
-    title: "Match Reservations to Park Flow",
-    description:
-      "Book meals near where you will already be, instead of adding long transportation windows that break momentum.",
-  },
-  {
-    title: "Use Character Meals Strategically",
-    description:
-      "For families with younger kids, character meals can replace multiple standalone character waits.",
-  },
-  {
-    title: "Protect Recovery Time",
-    description:
-      "Avoid late heavy dinners after intense park days unless your group is used to long activity windows.",
-  },
-];
 
 export const metadata: Metadata = buildPageMetadata(
   "Disney and Universal Dining Guide",
@@ -32,6 +11,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function DiningGuidePage() {
+  const guide = planningToolGuides["dining-guide"];
+
   return (
     <main className="min-h-screen bg-cloud">
       <section className="bg-white">
@@ -49,22 +30,15 @@ export default function DiningGuidePage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2">
-          {diningPriorityFramework.map((item) => (
-            <article key={item.title} className="rounded-xl bg-white p-7 shadow-sm">
-              <h2 className="mb-3 text-2xl font-semibold text-midnight">{item.title}</h2>
-              <p className="leading-8 text-charcoal/80">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <PlanningGuideSections guide={guide} />
 
       <CTASection
         title="Need dining recommendations matched to your itinerary?"
-        description="We can map reservations, park flow, and pacing for your specific travel dates and group style."
-        primaryButtonText="Start Planning"
-        primaryButtonLink="/contact?source=dining-guide&interests=dining"
+        description="Review current dining-related offers and budget fit first, then request a custom recommendation for your dates."
+        primaryButtonText="View Dining Plan Offers"
+        primaryButtonLink="/special-offers#dining-plans"
+        secondaryButtonText="Request Dining Strategy Help"
+        secondaryButtonLink="/contact?source=dining-guide&interests=dining"
       />
     </main>
   );

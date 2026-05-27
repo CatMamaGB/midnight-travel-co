@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import CTASection from "@/components/CTASection";
 import BudgetEstimator from "@/components/BudgetEstimator";
+import PlanningGuideSections from "@/components/PlanningGuideSections";
+import { planningToolGuides } from "@/lib/funnel";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
@@ -10,6 +12,8 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function BudgetCalculatorPage() {
+  const guide = planningToolGuides["budget-calculator"];
+
   return (
     <main className="min-h-screen bg-cloud">
       <section className="bg-white">
@@ -27,17 +31,21 @@ export default function BudgetCalculatorPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="bg-white py-16">
         <div className="mx-auto max-w-4xl px-4">
           <BudgetEstimator />
         </div>
       </section>
 
+      <PlanningGuideSections guide={guide} />
+
       <CTASection
         title="Ready for an exact custom quote?"
-        description="Share your preferences and we will turn your budget range into a recommendation-based trip plan."
-        primaryButtonText="Get a Custom Quote"
-        primaryButtonLink="/contact?source=budget-calculator"
+        description="Compare destination and offer paths first, then request an advisor-built quote tied to your exact trip priorities."
+        primaryButtonText="Compare Destination Paths"
+        primaryButtonLink="/destinations"
+        secondaryButtonText="Request Custom Quote"
+        secondaryButtonLink="/contact?source=budget-calculator"
       />
     </main>
   );

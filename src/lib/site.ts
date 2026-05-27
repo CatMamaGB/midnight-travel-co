@@ -48,7 +48,7 @@ export const SPECIAL_OFFER_LINKS = [
   { href: "/special-offers#universal-deals", label: "Universal Deals" },
   { href: "/special-offers#seasonal-offers", label: "Seasonal Offers" },
   { href: "/special-offers#kids-free-promos", label: "Kids Free Promos" },
-  { href: "/special-offers#dining-plans", label: "Dining Plans" },
+  { href: "/special-offers#dining-plans", label: "Dining Plan Offers" },
 ] as const;
 
 export const LEGAL_LINKS = [
