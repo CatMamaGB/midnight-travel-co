@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Turnstile from "react-turnstile";
 import { FormData } from "@/types/form";
 import ProgressIndicator from "./ProgressIndicator";
@@ -18,6 +18,7 @@ const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 export default function MultiStepForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -38,9 +39,52 @@ export default function MultiStepForm() {
     consent: false,
     website: "",
     formStartedAt: Date.now(),
+    source: "Plan My Vacation Form",
+    landingPage: "",
+    utmSource: "",
+    utmMedium: "",
+    utmCampaign: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [prefillApplied, setPrefillApplied] = useState(false);
+
+  useEffect(() => {
+    if (prefillApplied) {
+      return;
+    }
+
+    const destination = searchParams.get("destination")?.trim() ?? "";
+    const tripType = searchParams.get("tripType")?.trim() ?? "";
+    const source = searchParams.get("source")?.trim() ?? "Plan My Vacation Form";
+    const landingPage =
+      searchParams.get("landingPage")?.trim() ||
+      (typeof document !== "undefined" ? document.referrer : "") ||
+      "direct";
+    const utmSource = searchParams.get("utm_source")?.trim() ?? "";
+    const utmMedium = searchParams.get("utm_medium")?.trim() ?? "";
+    const utmCampaign = searchParams.get("utm_campaign")?.trim() ?? "";
+
+    const interestQuery = searchParams.get("interests")?.trim() ?? "";
+    const interests = interestQuery
+      .split(",")
+      .map((interest) => interest.trim())
+      .filter(Boolean);
+
+    setFormData((previous) => ({
+      ...previous,
+      destination: destination || previous.destination,
+      tripType: tripType || previous.tripType,
+      interests: interests.length > 0 ? interests : previous.interests,
+      source,
+      landingPage,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+    }));
+
+    setPrefillApplied(true);
+  }, [prefillApplied, searchParams]);
 
   const updateData = (data: Partial<FormData>) => {
     setFormData((prev) => ({ ...prev, ...data }));

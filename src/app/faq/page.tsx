@@ -10,8 +10,25 @@ export const metadata: Metadata = buildPageMetadata(
 );
 
 export default function FAQ() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-cloud">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="bg-white">
         <div className="mx-auto max-w-5xl px-4 py-20 text-center">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-royal">

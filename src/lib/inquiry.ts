@@ -5,6 +5,10 @@ export const INQUIRY_HEADERS = [
   "Submitted At",
   "Lead ID",
   "Source",
+  "Landing Page",
+  "UTM Source",
+  "UTM Medium",
+  "UTM Campaign",
   "Status",
   "First Name",
   "Last Name",
@@ -32,6 +36,10 @@ export interface InquiryRecord {
   submittedAt: string;
   leadId: string;
   source: string;
+  landingPage: string;
+  utmSource: string;
+  utmMedium: string;
+  utmCampaign: string;
   status: string;
   firstName: string;
   lastName: string;
@@ -58,11 +66,16 @@ export interface InquiryRecord {
 export function buildInquiryRecord(formData: FormData): InquiryRecord {
   const submittedAt = new Date().toISOString();
   const shortId = randomUUID().split("-")[0].toUpperCase();
+  const source = formData.source?.trim() || "Website Plan My Vacation Form";
 
   return {
     submittedAt,
     leadId: `MTC-${submittedAt.slice(0, 10).replace(/-/g, "")}-${shortId}`,
-    source: "Website Contact Form",
+    source,
+    landingPage: formData.landingPage?.trim() || "unknown",
+    utmSource: formData.utmSource?.trim() || "",
+    utmMedium: formData.utmMedium?.trim() || "",
+    utmCampaign: formData.utmCampaign?.trim() || "",
     status: "New Inquiry",
     firstName: formData.firstName.trim(),
     lastName: formData.lastName.trim(),
@@ -92,6 +105,10 @@ export function inquiryRecordToRow(record: InquiryRecord): (string | number)[] {
     record.submittedAt,
     record.leadId,
     record.source,
+    record.landingPage,
+    record.utmSource,
+    record.utmMedium,
+    record.utmCampaign,
     record.status,
     record.firstName,
     record.lastName,

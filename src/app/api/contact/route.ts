@@ -16,6 +16,9 @@ const MAX_LENGTHS = {
   tripType: 80,
   vision: 4000,
   interest: 80,
+  source: 160,
+  landingPage: 2000,
+  utm: 160,
 };
 
 function getClientIp(request: NextRequest): string {
@@ -107,6 +110,11 @@ export async function POST(request: NextRequest) {
       exceedsMaxLength(formData.destination, MAX_LENGTHS.destination) ||
       exceedsMaxLength(formData.tripType, MAX_LENGTHS.tripType) ||
       exceedsMaxLength(formData.vision, MAX_LENGTHS.vision) ||
+      exceedsMaxLength(formData.source, MAX_LENGTHS.source) ||
+      exceedsMaxLength(formData.landingPage, MAX_LENGTHS.landingPage) ||
+      exceedsMaxLength(formData.utmSource, MAX_LENGTHS.utm) ||
+      exceedsMaxLength(formData.utmMedium, MAX_LENGTHS.utm) ||
+      exceedsMaxLength(formData.utmCampaign, MAX_LENGTHS.utm) ||
       formData.interests.some((interest) => exceedsMaxLength(interest, MAX_LENGTHS.interest))
     ) {
       return NextResponse.json(

@@ -33,6 +33,13 @@ export interface FormData {
   website?: string;
   formStartedAt?: number;
   turnstileToken?: string;
+
+  // Attribution fields for lead source reporting
+  source?: string;
+  landingPage?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
 }
 
 export interface FormStepProps {

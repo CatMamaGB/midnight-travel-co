@@ -35,7 +35,7 @@ export default function Header() {
           href="/contact"
           className="hidden rounded-md bg-midnight px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-royal md:inline-flex"
         >
-          Start Planning
+          Plan My Vacation
         </Link>
 
         <button
@@ -79,7 +79,7 @@ export default function Header() {
               className="mt-2 inline-flex justify-center rounded-md bg-midnight px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-royal"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Start Planning
+              Plan My Vacation
             </Link>
           </nav>
         </div>

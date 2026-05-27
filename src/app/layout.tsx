@@ -19,6 +19,11 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  icons: {
+    icon: "/logo-mark.svg",
+    shortcut: "/logo-mark.svg",
+    apple: "/logo-mark.svg",
+  },
   title: {
     default: `${SITE_NAME} | Premium Travel Planning & VIP Concierge Services`,
     template: `%s | ${SITE_NAME}`,

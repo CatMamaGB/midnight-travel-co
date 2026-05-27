@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const size = {
   width: 1200,
@@ -9,6 +9,8 @@ export const size = {
 export const contentType = "image/png";
 
 export default function OpenGraphImage() {
+  const logoMarkUrl = new URL("/logo-mark.svg", SITE_URL).toString();
+
   return new ImageResponse(
     (
       <div
@@ -29,30 +31,42 @@ export default function OpenGraphImage() {
         <div
           style={{
             position: "absolute",
-            top: 52,
-            right: 68,
+            top: 56,
+            right: 72,
             color: "#EFBEB7",
-            fontSize: 44,
-            letterSpacing: 8,
+            fontSize: 36,
+            letterSpacing: 6,
+            opacity: 0.8,
           }}
         >
           ✦ ✦ ✦
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 26,
+          }}
+        >
           <div
             style={{
-              width: 90,
-              height: 90,
-              borderRadius: "999px",
-              border: "2px solid rgba(239,190,183,0.35)",
+              width: 152,
+              height: 152,
+              borderRadius: 24,
+              backgroundColor: "rgba(255,255,255,0.06)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#EFBEB7",
-              fontSize: 48,
+              padding: 14,
             }}
           >
-            ☾
+            <img
+              src={logoMarkUrl}
+              width={124}
+              height={124}
+              alt={`${SITE_NAME} logo`}
+              style={{ objectFit: "contain" }}
+            />
           </div>
           <div
             style={{
@@ -62,9 +76,9 @@ export default function OpenGraphImage() {
           >
             <div
               style={{
-                fontSize: 22,
+                fontSize: 20,
                 textTransform: "uppercase",
-                letterSpacing: 6,
+                letterSpacing: 5,
                 color: "#EFBEB7",
               }}
             >
@@ -72,10 +86,10 @@ export default function OpenGraphImage() {
             </div>
             <div
               style={{
-                fontSize: 64,
+                fontSize: 82,
                 lineHeight: 1.05,
                 fontWeight: 700,
-                maxWidth: 760,
+                maxWidth: 830,
               }}
             >
               {SITE_NAME}
@@ -86,32 +100,15 @@ export default function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: 22,
+            gap: 20,
+            fontSize: 24,
+            color: "#EFBEB7",
           }}
         >
-          <div
-            style={{
-              maxWidth: 860,
-              fontSize: 30,
-              lineHeight: 1.35,
-              color: "rgba(255,255,255,0.88)",
-            }}
-          >
-            {SITE_DESCRIPTION}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 18,
-              fontSize: 22,
-              color: "#EFBEB7",
-            }}
-          >
+          <div style={{ display: "flex", gap: 18 }}>
             <span>Disney</span>
             <span>Universal</span>
             <span>VIP Concierge</span>
-            <span>Special Events</span>
           </div>
         </div>
       </div>

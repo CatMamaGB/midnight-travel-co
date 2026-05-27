@@ -8,7 +8,7 @@ export const bestDisneyAndUniversalDestinationsForEveryTypeOfTraveler: BlogPost 
   excerpt:
     "A travel advisor's guide to matching the right Disney or Universal destination to your age range, travel style, budget, and group dynamic.",
   author: "Alexa, The Midnight Travel Co.",
-  category: "Disney & Universal Planning",
+  category: "Disney",
   publishedAt: "2026-05-22",
   readingTime: "10 min read",
   heroKicker: "Disney & Universal Guide",

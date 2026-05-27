@@ -17,6 +17,14 @@ interface ServicePageTemplateProps {
     description: string;
     items: string[];
   };
+  cta?: {
+    title?: string;
+    description?: string;
+    primaryButtonText?: string;
+    primaryButtonLink?: string;
+    secondaryButtonText?: string;
+    secondaryButtonLink?: string;
+  };
 }
 
 export default function ServicePageTemplate({
@@ -26,6 +34,7 @@ export default function ServicePageTemplate({
   included,
   whoItsFor,
   premiumFocus,
+  cta,
 }: ServicePageTemplateProps) {
   return (
     <main className="min-h-screen">
@@ -127,10 +136,15 @@ export default function ServicePageTemplate({
 
       {/* CTA Section */}
       <CTASection
-        title={`Ready to Experience ${title}?`}
-        description="Let's begin planning your extraordinary journey. Share your vision with us, and we'll handle every detail."
-        primaryButtonText="Start Planning"
-        primaryButtonLink="/contact"
+        title={cta?.title ?? `Ready to Experience ${title}?`}
+        description={
+          cta?.description ??
+          "Let's begin planning your extraordinary journey. Share your vision with us, and we'll handle every detail."
+        }
+        primaryButtonText={cta?.primaryButtonText ?? "Start Planning"}
+        primaryButtonLink={cta?.primaryButtonLink ?? "/contact"}
+        secondaryButtonText={cta?.secondaryButtonText}
+        secondaryButtonLink={cta?.secondaryButtonLink}
       />
     </main>
   );

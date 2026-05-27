@@ -33,11 +33,13 @@ export default function Step2TripBasics({ data, updateData, errors }: FormStepPr
           required
         >
           <option value="">Select trip type</option>
-          <option value="family">Family Vacation</option>
-          <option value="romantic">Romantic Getaway</option>
-          <option value="adventure">Adventure</option>
-          <option value="relaxation">Relaxation</option>
-          <option value="celebration">Celebration</option>
+          <option value="families">Families With Kids</option>
+          <option value="adults-only">Adults-Only Trip</option>
+          <option value="luxury">Luxury Vacation</option>
+          <option value="first-time-visitors">First-Time Visitor Trip</option>
+          <option value="honeymoons">Honeymoon</option>
+          <option value="group-travel">Group Travel</option>
+          <option value="adventure">Adventure-Focused Trip</option>
           <option value="other">Other</option>
         </select>
         {errors.tripType && <p className="text-sm text-accent mt-1">{errors.tripType}</p>}

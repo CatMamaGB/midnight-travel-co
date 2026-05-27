@@ -8,7 +8,7 @@ export const howToPlanALowStressDisneyTripForFamiliesWithYoungKids: BlogPost = {
   excerpt:
     "A calmer Disney strategy for families with toddlers and early elementary kids, from resort selection to rest breaks and realistic park pacing.",
   author: "Alexa, The Midnight Travel Co.",
-  category: "Family Travel",
+  category: "Travel Tips",
   publishedAt: "2026-05-22",
   readingTime: "7 min read",
   heroKicker: "Family Travel Strategy",

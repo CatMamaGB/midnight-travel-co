@@ -161,6 +161,12 @@ export default async function ThankYou({ searchParams }: ThankYouPageProps) {
               While You Wait
             </h3>
             <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href={`mailto:travel.midnightco@gmail.com?subject=Consultation%20Request${params?.leadId ? `%20(${params.leadId})` : ""}`}
+                className="px-6 py-2 bg-midnight text-white rounded-md hover:bg-royal transition-colors"
+              >
+                Book Free Consultation
+              </a>
               <Link
                 href="/faq"
                 className="px-6 py-2 bg-cloud text-midnight rounded-md hover:bg-silver transition-colors"

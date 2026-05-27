@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
 import { getAllBlogPosts } from "@/lib/blog";
+import { BLOG_CATEGORY_TAXONOMY } from "@/lib/blogCategories";
 import { buildPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildPageMetadata(
@@ -33,7 +34,20 @@ export default function Blog() {
       </section>
 
       <section className="py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 px-4">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mb-10 flex flex-wrap gap-3">
+            {BLOG_CATEGORY_TAXONOMY.map((category) => (
+              <Link
+                key={category.slug}
+                href={`/blog/category/${category.slug}`}
+                className="inline-flex rounded-full border border-midnight/15 bg-white px-4 py-2 text-sm font-medium text-midnight transition-colors hover:border-midnight hover:bg-cloud"
+              >
+                {category.label}
+              </Link>
+            ))}
+          </div>
+
+          <div className="grid gap-8">
           {posts.map((post) => (
             <article key={post.slug} className="rounded-2xl bg-white p-8 shadow-sm">
               <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
@@ -62,6 +76,7 @@ export default function Blog() {
               </Link>
             </article>
           ))}
+          </div>
         </div>
       </section>
 

@@ -8,7 +8,7 @@ export const whenToUseATravelAdvisorForGroupAndCelebrationTravel: BlogPost = {
   excerpt:
     "From corporate retreats to milestone celebrations, here is when professional travel planning creates real value and smoother logistics.",
   author: "Alexa, The Midnight Travel Co.",
-  category: "Group & Event Travel",
+  category: "Group Travel",
   publishedAt: "2026-05-22",
   readingTime: "6 min read",
   heroKicker: "Group & Event Planning",

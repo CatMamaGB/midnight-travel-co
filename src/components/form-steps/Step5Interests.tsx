@@ -3,8 +3,11 @@ import FormStep from "../FormStep";
 import CheckboxGroup from "../CheckboxGroup";
 
 const INTEREST_OPTIONS = [
-  { value: "theme-parks", label: "Theme Parks" },
+  { value: "thrill-rides", label: "Thrill Rides" },
+  { value: "characters", label: "Characters & Meet-and-Greets" },
   { value: "dining", label: "Fine Dining" },
+  { value: "luxury", label: "Luxury Experiences" },
+  { value: "relaxation", label: "Relaxation & Resort Time" },
   { value: "shows", label: "Shows & Entertainment" },
   { value: "shopping", label: "Shopping" },
   { value: "spa", label: "Spa & Relaxation" },
